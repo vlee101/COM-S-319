@@ -21,64 +21,64 @@ function dataToHTML(data) {
   <a button class="nav-link" type="button" class="button" onclick="credits()"/>Credits</a>
   `;
   for (let i = 0; i < data.animalmals.length-1; i++) {
-    let pain1 = data.animalmals[i].picture_icon.url;
-    let pain2 = data.animalmals[i].picture_icon.alt;
-    let pain3 = data.animalmals[i].animalmalId;
+    let picUrl1 = data.animalmals[i].picture_icon.url;
+    let picAlt1 = data.animalmals[i].picture_icon.alt;
+    let animalId1 = data.animalmals[i].animalmalId;
     i++;
-    let pain4 = data.animalmals[i].picture_icon.url;
-    let pain5 = data.animalmals[i].picture_icon.alt;
-    let pain6 = data.animalmals[i].animalmalId;
+    let picUrl2 = data.animalmals[i].picture_icon.url;
+    let picAlt2 = data.animalmals[i].picture_icon.alt;
+    let animalId2 = data.animalmals[i].animalmalId;
     i++;
-    let pain7 = data.animalmals[i].picture_icon.url;
-    let pain8 = data.animalmals[i].picture_icon.alt;
-    let pain9 = data.animalmals[i].animalmalId;
+    let picUrl3 = data.animalmals[i].picture_icon.url;
+    let picAlt3 = data.animalmals[i].picture_icon.alt;
+    let animalId3 = data.animalmals[i].animalmalId;
     navchange.innerHTML += `
-    <button class="dropdown-item" type="button" value="${pain3}" onclick="get_data(value)" class="button"/>${pain3}</a>
-    <button class="dropdown-item" type="button" value="${pain6}" onclick="get_data(value)" class="button"/>${pain6}</a>
-    <button class="dropdown-item" type="button" value="${pain9}" onclick="get_data(value)" class="button"/>${pain9}</a>
+    <button class="dropdown-item" type="button" value="${animalId1}" onclick="get_data(value)" class="button"/>${animalId1}</a>
+    <button class="dropdown-item" type="button" value="${animalId2}" onclick="get_data(value)" class="button"/>${animalId2}</a>
+    <button class="dropdown-item" type="button" value="${animalId3}" onclick="get_data(value)" class="button"/>${animalId3}</a>
     `;
     mainContainer.innerHTML += `
     <div class="col-xs-6 col-md-4">
         <div class="product tumbnail thumbnail-3">
-        <input type="image" src="${pain1}" alt="${pain2}" class="w-75" name="button" value="${pain3}" onclick="get_data(value)" class="button"/></a>
+        <input type="image" src="${picUrl1}" alt="${picAlt1}" class="w-75" name="button" value="${animalId1}" onclick="get_data(value)" class="button"/></a>
           <div class="caption">
-        <h6><input type="button" name="button" class="btn btn-link" value ="${pain3}" onclick="get_data(value)"/></h6>
+        <h6><input type="button" name="button" class="btn btn-link" value ="${animalId1}" onclick="get_data(value)"/></h6>
         <span class="animal_type"></span>
           </div>
         </div>
       </div>
       <div class="col-xs-6 col-md-4">
         <div class="product tumbnail thumbnail-3">
-        <input type="image" src="${pain4}" alt="${pain5}" class="w-75" name="button" value="${pain6}" onclick="get_data(value)" class="button"/></a>
+        <input type="image" src="${picUrl2}" alt="${picAlt2}" class="w-75" name="button" value="${animalId2}" onclick="get_data(value)" class="button"/></a>
           <div class="caption">
-        <h6><input type="button" name="button" class="btn btn-link" value ="${pain6}" onclick="get_data(value)"/></a></h6>
+        <h6><input type="button" name="button" class="btn btn-link" value ="${animalId2}" onclick="get_data(value)"/></a></h6>
         <span class="animal_type"></span>
           </div>
         </div>
       </div>
       <div class="col-xs-6 col-md-4">
         <div class="product tumbnail thumbnail-3">
-        <input type="image" src="${pain7}" alt="${pain8}" class="w-75" name="button" value="${pain9}" onclick="get_data(value)" class="button"/></a>
+        <input type="image" src="${picUrl3}" alt="${picAlt3}" class="w-75" name="button" value="${animalId3}" onclick="get_data(value)" class="button"/></a>
           <div class="caption">
-        <h6><input type="button" name="button" class="btn btn-link" value ="${pain9}" onclick="get_data(value)"/></a></h6>
+        <h6><input type="button" name="button" class="btn btn-link" value ="${animalId3}" onclick="get_data(value)"/></a></h6>
         <span class="animal_type"></span>
           </div>
         </div>
       </div>`;
   }
-  let pain10 = data.animalmals[data.animalmals.length-1].animalmalId;
-  let pain11 = data.animalmals[data.animalmals.length-1].picture_icon.url;
-  let pain12 = data.animalmals[data.animalmals.length-1].picture_icon.alt;
+  let professorId = data.animalmals[data.animalmals.length-1].animalmalId;
+  let professorPicUrl = data.animalmals[data.animalmals.length-1].picture_icon.url;
+  let professorPicAlt = data.animalmals[data.animalmals.length-1].picture_icon.alt;
   navchange.innerHTML += `
-    <button class="dropdown-item" type="button" value="${pain10}" onclick="get_data(value)" class="button"/>${pain10}</a>
+    <button class="dropdown-item" type="button" value="${professorId}" onclick="get_data(value)" class="button"/>${professorId}</a>
   `;
   mainContainer.innerHTML += `
   <center>
     <div class="col-xs-6 col-md-4">
       <div class="product tumbnail thumbnail-3">
-      <input type="image" src="${pain11}" alt="${pain12}" class="w-75" name="button" value="${pain10}" onclick="get_data(value)" class="button"/></a>
+      <input type="image" src="${professorPicUrl}" alt="${professorPicAlt}" class="w-75" name="button" value="${professorId}" onclick="get_data(value)" class="button"/></a>
         <div class="caption">
-      <h6><input type="button" name="button" class="btn btn-link" value ="${pain10}" onclick="get_data(value)"/></a></h6>
+      <h6><input type="button" name="button" class="btn btn-link" value ="${professorId}" onclick="get_data(value)"/></a></h6>
       <span class="animal_type"></span>
         </div>
       </div>
@@ -132,21 +132,21 @@ function renderpage(data, value) {
   `;
 
   if (value == data.animalmals[9].animalmalId) {
-    let pain0 = data.animalmals[9].animalmalId;
+    let profId = data.animalmals[9].animalmalId;
     let mainContainer1 = document.getElementById("change1");
     mainContainer1.innerHTML = `
-    <h1 class="text-center text-muted mt-2">${pain0}</h1> `;
-    let pain1 = data.animalmals[9].picture.url;
-    let pain2 = data.animalmals[9].picture.alt;
-    let pain3 = data.animalmals[9].meme_danger;
-    let pain4 = data.animalmals[9].meme_info.text;
+    <h1 class="text-center text-muted mt-2">${profId}</h1> `;
+    let profPicUrl = data.animalmals[9].picture.url;
+    let profPicAlt = data.animalmals[9].picture.alt;
+    let profWarning = data.animalmals[9].meme_danger;
+    let profInfo = data.animalmals[9].meme_info.text;
     let mainContainer2 = document.getElementById("change2");
       mainContainer2.innerHTML = `
       <main>
       <script src="./raspberrypidata.js"></script>
       <div class="container">
-        <img src="${pain1}" alt="${pain2}" class="mx-auto d-block my-3">
-        <center><p class="text-danger text-center">${pain3}</p>
+        <img src="${profPicUrl}" alt="${profPicAlt}" class="mx-auto d-block my-3">
+        <center><p class="text-danger text-center">${profWarning}</p>
         <p>These are the conditions in the amazing professor's office:</p>
         <div id="tempdata">
             <div class="row">
@@ -184,7 +184,7 @@ function renderpage(data, value) {
                 </div>
             </div>
         </div>
-        <p>${pain4}</p>
+        <p>${profInfo}</p>
       </div></center>
     </main>`;
     populateRaspberryPiData();
@@ -192,27 +192,27 @@ function renderpage(data, value) {
   else{
   for (let i = 0; i < data.animalmals.length-1; i++) {
     if (data.animalmals[i].animalmalId == value) {
-      let pain0 = data.animalmals[i].animalmalId;
-      let pain1 = data.animalmals[i].picture.url;
-      let pain2 = data.animalmals[i].picture.alt;
-      let pain3 = data.animalmals[i].meme_danger;
-      let pain4 = data.animalmals[i].meme_info.text;
-      let pain5 = data.animalmals[i].meme_info.source.url;
-      let pain6 = data.animalmals[i].meme_info.source.alt;
-      let pain7 = data.animalmals[i].video;
+      let animalId = data.animalmals[i].animalmalId;
+      let picUrl = data.animalmals[i].picture.url;
+      let picAlt = data.animalmals[i].picture.alt;
+      let animalWarning = data.animalmals[i].meme_danger;
+      let memeInfo = data.animalmals[i].meme_info.text;
+      let memeSourceUrl = data.animalmals[i].meme_info.source.url;
+      let memeSourceAlt = data.animalmals[i].meme_info.source.alt;
+      let video = data.animalmals[i].video;
       let mainContainer1 = document.getElementById("change1");
       mainContainer1.innerHTML = `
-        <h1 class="text-center text-muted mt-2">${pain0}</h1> `;
+        <h1 class="text-center text-muted mt-2">${animalId}</h1> `;
       let mainContainer2 = document.getElementById("change2");
       mainContainer2.innerHTML = `
         <main>
           <div class="container">
-            <img src="${pain1}" alt="${pain2}" class="mx-auto d-block my-3 w-25">
-            <center><p class="text-danger text-center">${pain3}</p>
-            <p>${pain4}</p>
-            <p>Source: <a href="${pain5}">${pain6}</a></p>
+            <img src="${picUrl}" alt="${picAlt}" class="mx-auto d-block my-3 w-25">
+            <center><p class="text-danger text-center">${animalWarning}</p>
+            <p>${memeInfo}</p>
+            <p>Source: <a href="${memeSourceUrl}">${memeSourceAlt}</a></p>
           </div></center>
-          <center>${pain7}</center>
+          <center>${video}</center>
         </main>`;
     }
   }
