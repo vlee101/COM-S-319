@@ -188,6 +188,27 @@
         "alt": "Immortal Snail Meme"
     },
     "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/h9Kg2rD5JdY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+    },
+
+    {
+        "animalmalId": "Abraham Aldaco: Rare Pokemon",
+        "picture_icon":{
+            "url": "images/IMG_2380.gif",
+            "alt": "Picture of the Amazing Professor :3"
+        },
+        "meme_danger": "WARNING: notices if you miss class",
+        "meme_info":{
+            "text": "Catch at your own risk: this Pokemon is dangerous.",
+            "source":{
+                "url":"",
+                "title": ""
+            }
+        },
+        "picture":{
+            "url": "./images/professor.jpg",
+            "alt": "Very happy prof"
+        },
+        "video": ""
     }
     ]
 }
