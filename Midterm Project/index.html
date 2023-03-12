@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Assignment 1- Animalmal Catalog for your Daily Dose of Animalmal Memes
+      Midterm - Animalmal Catalog for your Daily Dose of Animalmal Memes
     </title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -26,6 +26,7 @@
   </head>
   <link rel="icon" href="images/IMG_2295.jpg" type="image/icon type" />
   <body>
+    <script src="index.js"></script>
     <header>
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <button
@@ -54,163 +55,36 @@
                 aria-expanded="false"
                 >Our Amazing Catalog</a
               >
-              <div class="dropdown-menu" aria-labelledby="dropdown03">
-                <a class="dropdown-item" href="./catto.html">Catto</a>
-                <a class="dropdown-item" href="./doge.html">Doge</a>
-                <a class="dropdown-item" href="./long_neck_deer.html"
-                  >Long Neck Deer</a
-                >
-                <a class="dropdown-item" href="./slippery_noodle.html"
-                  >Slippery Noodle</a
-                >
-                <a class="dropdown-item" href="./immortal_snail.html"
-                  >Immortal Snail</a
-                >
-                <a class="dropdown-item" href="./birb.html">Birb</a>
-                <a class="dropdown-item" href="./feesh.html">Feesh</a>
-                <a class="dropdown-item" href="./frog.html">Frog</a>
-                <a class="dropdown-item" href="./dragoon.html">Dragoon</a>
-              </div>
+
+              <div
+                id="change_nav"
+                class="dropdown-menu"
+                aria-labelledby="dropdown03"
+              ></div>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="./credits.html">Credits</a>
+              <div id="crd">
+                <!-- <a class="nav-link" href="./credits.html">Credits</a> -->
+              </div>
             </li>
           </ul>
         </div>
       </nav>
-      <h1 class="text-center text-muted mt-2">Animalmals Memes</h1>
-    </header>
-    <main>
-      <div class="container bootstrap snipets">
-        <center>
-          <div class="row flow-offset-1">
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="catto.html"
-                  ><img
-                    src="images/IMG_2294.jpg"
-                    alt="Look at that smug catto"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="catto.html">Catto</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="doge.html"
-                  ><img
-                    src="images/IMG_2286.jpeg"
-                    alt="bread doge who would wish for more?"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="doge.html">Doge</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="long_neck_deer.html"
-                  ><img
-                    src="images/IMG_2293.jpeg"
-                    alt="Someone's excited to see a long neck deer I see"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="long_neck_deer.html">Long Neck Deer</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="slippery_noodle.html"
-                  ><img
-                    src="images/IMG_2292.jpeg"
-                    alt="Look at that snout, don't you just want to boop it?"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="slippery_noodle.html">Slippery Noodle</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="immortal_snail.html"
-                  ><img
-                    src="images/IMG_2291.jpeg"
-                    alt="DON'T LET IT TOUCH YOU"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="immortal_snail.html">Immortal Snail</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="birb.html"
-                  ><img
-                    src="images/IMG_2290.jpeg"
-                    alt="BOIIIIIIIIII"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="birb.html">Birb</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="feesh.html"
-                  ><img
-                    src="images/IMG_2289.jpeg"
-                    alt="Eat that carrot feesh"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="feesh.html">Feesh</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="frog.html"
-                  ><img src="images/IMG_2288.jpeg" alt="sad boi" class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="frog.html">Frog</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <div class="product tumbnail thumbnail-3">
-                <a href="dragoon.html"
-                  ><img
-                    src="images/IMG_2287.jpeg"
-                    alt="I want a friend like that :,D"
-                    class="w-75"
-                /></a>
-                <div class="caption">
-                  <h6><a href="dragoon.html">Dragoon</a></h6>
-                  <span class="animal_type"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </center>
+      <div id="change1">
+        <h1 class="text-center text-muted mt-2">Animalmals Memes</h1>
       </div>
-    </main>
+    </header>
+    <div id="main">
+      <main>
+        <div id="change2">
+          <div class="container bootstrap snipets">
+            <center>
+              <div id="chose_your_fighter" class="row flow-offset-1"></div>
+            </center>
+          </div>
+        </div>
+      </main>
+    </div>
     <footer class="mt-5 bg-dark-subtle">
       <div class="text-center">
         <p>Thank you for checking out some animal memes!</p>
