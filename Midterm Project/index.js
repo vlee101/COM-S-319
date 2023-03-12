@@ -96,7 +96,9 @@ function credits() {
   <main>
   <div class="container text-center my-3">
   <h3>Website made by:</h3>
-  <h3>Vicky and Olivia</h3>
+  <h3>Vicky Lee (vlee101) and Olivia Wiench (owiench)</h3>
+  <p>Com S 319 - Construction of User Interfaces, Spring 2023</p>
+  <p>March 12, 2023</p>
   </div>
   <div id="change2">
   <div class="container bootstrap snipets">
@@ -185,6 +187,7 @@ function renderpage(data, value) {
         <p>${pain4}</p>
       </div></center>
     </main>`;
+    populateRaspberryPiData();
   }
   else{
   for (let i = 0; i < data.animalmals.length-1; i++) {
@@ -214,4 +217,33 @@ function renderpage(data, value) {
     }
   }
 }
+}
+
+
+
+
+function populateRaspberryPiData() {
+  getData(5000);
+  let interval = setInterval(getData, 5000);
+
+  async function getData() {
+      let response = await fetch("http://10.26.25.211:2001/", { method: "GET" });
+      let data = await response.json();
+      parseData(data);
+  }
+
+  function parseData(data) {
+      let tempFParagraph = document.getElementById("TempF");
+      tempFParagraph.innerHTML = data[0].TempF;
+
+      let tempCParagraph = document.getElementById("TempC");
+      tempCParagraph.innerHTML = data[0].TempC;
+
+      let humidityParagraph = document.getElementById("Humidity");
+      humidityParagraph.innerHTML = data[0].Humidity;
+
+      let datetimeParagraph = document.getElementById("DateTime");
+      datetimeParagraph.innerHTML = data[0].Date;
+      datetimeParagraph.innerHTML += " at " + data[0].Time;
+  }
 }
