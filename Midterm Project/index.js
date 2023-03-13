@@ -1,13 +1,12 @@
 fetch("data.json")
   .then((response) => response.json())
-  .then((data) => dataToHTML(data));
+  .then((data) => dataToHomePageHTML(data));
 
-function dataToHTML(data) {
+function dataToHomePageHTML(data) {
   let mainContainer = document.getElementById("chose_your_fighter");
   let navchange = document.getElementById("change_nav");
   let credits = document.getElementById("crd");
   mainContainer.innerHTML = `
-  <script src="change.js"></script>
   <main>
   <div id="change2">
   <div class="container bootstrap snipets">
@@ -18,7 +17,7 @@ function dataToHTML(data) {
   </div>
   </main>`;
   credits.innerHTML = `
-  <a button class="nav-link" type="button" class="button" onclick="credits()"/>Credits</a>
+  <a class="nav-link" type="button" onclick="credits()">Credits</a>
   `;
   for (let i = 0; i < data.animalmals.length-1; i++) {
     let picUrl1 = data.animalmals[i].picture_icon.url;
@@ -33,34 +32,34 @@ function dataToHTML(data) {
     let picAlt3 = data.animalmals[i].picture_icon.alt;
     let animalId3 = data.animalmals[i].animalmalId;
     navchange.innerHTML += `
-    <button class="dropdown-item" type="button" value="${animalId1}" onclick="get_data(value)" class="button"/>${animalId1}</a>
-    <button class="dropdown-item" type="button" value="${animalId2}" onclick="get_data(value)" class="button"/>${animalId2}</a>
-    <button class="dropdown-item" type="button" value="${animalId3}" onclick="get_data(value)" class="button"/>${animalId3}</a>
+    <button class="dropdown-item" type="button" value="${animalId1}" onclick="get_data(value)">${animalId1}</button>
+    <button class="dropdown-item" type="button" value="${animalId2}" onclick="get_data(value)">${animalId2}</button>
+    <button class="dropdown-item" type="button" value="${animalId3}" onclick="get_data(value)">${animalId3}</button>
     `;
     mainContainer.innerHTML += `
     <div class="col-xs-6 col-md-4">
         <div class="product tumbnail thumbnail-3">
-        <input type="image" src="${picUrl1}" alt="${picAlt1}" class="w-75" name="button" value="${animalId1}" onclick="get_data(value)" class="button"/></a>
+        <input type="image" src="${picUrl1}" alt="${picAlt1}" class="w-75" value="${animalId1}" onclick="get_data(value)">
           <div class="caption">
-        <h6><input type="button" name="button" class="btn btn-link" value ="${animalId1}" onclick="get_data(value)"/></h6>
+        <h6><input type="button" class="btn btn-link" value ="${animalId1}" onclick="get_data(value)"></h6>
         <span class="animal_type"></span>
           </div>
         </div>
       </div>
       <div class="col-xs-6 col-md-4">
         <div class="product tumbnail thumbnail-3">
-        <input type="image" src="${picUrl2}" alt="${picAlt2}" class="w-75" name="button" value="${animalId2}" onclick="get_data(value)" class="button"/></a>
+        <input type="image" src="${picUrl2}" alt="${picAlt2}" class="w-75" value="${animalId2}" onclick="get_data(value)">
           <div class="caption">
-        <h6><input type="button" name="button" class="btn btn-link" value ="${animalId2}" onclick="get_data(value)"/></a></h6>
+        <h6><input type="button" class="btn btn-link" value ="${animalId2}" onclick="get_data(value)"></h6>
         <span class="animal_type"></span>
           </div>
         </div>
       </div>
       <div class="col-xs-6 col-md-4">
         <div class="product tumbnail thumbnail-3">
-        <input type="image" src="${picUrl3}" alt="${picAlt3}" class="w-75" name="button" value="${animalId3}" onclick="get_data(value)" class="button"/></a>
+        <input type="image" src="${picUrl3}" alt="${picAlt3}" class="w-75" value="${animalId3}" onclick="get_data(value)">
           <div class="caption">
-        <h6><input type="button" name="button" class="btn btn-link" value ="${animalId3}" onclick="get_data(value)"/></a></h6>
+        <h6><input type="button" class="btn btn-link" value ="${animalId3}" onclick="get_data(value)"></h6>
         <span class="animal_type"></span>
           </div>
         </div>
@@ -76,9 +75,9 @@ function dataToHTML(data) {
   <center>
     <div class="col-xs-6 col-md-4">
       <div class="product tumbnail thumbnail-3">
-      <input type="image" src="${professorPicUrl}" alt="${professorPicAlt}" class="w-75" name="button" value="${professorId}" onclick="get_data(value)" class="button"/></a>
+      <input type="image" src="${professorPicUrl}" alt="${professorPicAlt}" class="w-75" value="${professorId}" onclick="get_data(value)">
         <div class="caption">
-      <h6><input type="button" name="button" class="btn btn-link" value ="${professorId}" onclick="get_data(value)"/></a></h6>
+      <h6><input type="button" class="btn btn-link" value ="${professorId}" onclick="get_data(value)"></h6>
       <span class="animal_type"></span>
         </div>
       </div>
@@ -114,10 +113,10 @@ function credits() {
 function get_data(value) {
   fetch("data.json")
     .then((response) => response.json())
-    .then((data) => renderpage(data, value));
+    .then((data) => renderMemePage(data, value));
 }
 
-function renderpage(data, value) {
+function renderMemePage(data, value) {
   let main_change = document.getElementById("main");
   main_change.innerHTML = `
   <main>
@@ -198,7 +197,7 @@ function renderpage(data, value) {
       let animalWarning = data.animalmals[i].meme_danger;
       let memeInfo = data.animalmals[i].meme_info.text;
       let memeSourceUrl = data.animalmals[i].meme_info.source.url;
-      let memeSourceAlt = data.animalmals[i].meme_info.source.alt;
+      let memeSourceTitle = data.animalmals[i].meme_info.source.title;
       let video = data.animalmals[i].video;
       let mainContainer1 = document.getElementById("change1");
       mainContainer1.innerHTML = `
@@ -210,7 +209,7 @@ function renderpage(data, value) {
             <img src="${picUrl}" alt="${picAlt}" class="mx-auto d-block my-3 w-25">
             <center><p class="text-danger text-center">${animalWarning}</p>
             <p>${memeInfo}</p>
-            <p>Source: <a href="${memeSourceUrl}">${memeSourceAlt}</a></p>
+            <p>Source: <a href="${memeSourceUrl}">${memeSourceTitle}</a></p>
           </div></center>
           <center>${video}</center>
         </main>`;
@@ -223,7 +222,7 @@ function renderpage(data, value) {
 
 
 function populateRaspberryPiData() {
-  getData(5000);
+  getData();
   let interval = setInterval(getData, 5000);
 
   async function getData() {
