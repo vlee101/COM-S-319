@@ -69,7 +69,7 @@ body {
   margin-right: 30px;
 }
 
-.like-btn {
+.like-mybtn {
   position: absolute;
   top: 9px;
   display: inline-block;
@@ -145,7 +145,7 @@ body {
   font-weight: 300;
 }
 
-button[class*="btn"] {
+button[class*="mybtn"] {
   width: 30px;
   height: 30px;
   background-color: #e1e8ee;
@@ -153,10 +153,10 @@ button[class*="btn"] {
   border: none;
   cursor: pointer;
 }
-.minus-btn img {
+.minus-mybtn img {
   margin-bottom: 3px;
 }
-.plus-btn img {
+.plus-mybtn img {
   margin-bottom: 3px;
 }
 button:focus,

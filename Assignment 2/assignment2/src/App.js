@@ -62,7 +62,7 @@ export function App() {
             {/* <!-- Product #1 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -74,11 +74,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -89,7 +89,7 @@ export function App() {
             {/* <!-- Product #2 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -101,11 +101,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -116,7 +116,7 @@ export function App() {
             {/* <!-- Product #3 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -128,11 +128,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -143,7 +143,7 @@ export function App() {
             {/* <!-- Product #4 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -155,11 +155,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -170,7 +170,7 @@ export function App() {
             {/* <!-- Product #5 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -182,11 +182,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -197,7 +197,7 @@ export function App() {
             {/* <!-- Product #6 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -209,11 +209,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -224,7 +224,7 @@ export function App() {
             {/* <!-- Product #7 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -236,11 +236,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -251,7 +251,7 @@ export function App() {
             {/* <!-- Product #8 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -263,11 +263,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -278,7 +278,7 @@ export function App() {
             {/* <!-- Product #9 --> */}
             <div className="item">
               <div className="buttons">
-                <span className="like-btn"></span>
+                <span className="like-mybtn"></span>
               </div>
 
               <div className="image">
@@ -290,11 +290,11 @@ export function App() {
               </div>
 
               <div className="quantity">
-                <button className="minus-btn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button">
                   <img src="images/minus.svg" alt="" />
                 </button>
                 <input type="text" name="name" value="1" />
-                <button className="plus-btn" type="button" name="button">
+                <button className="plus-mybtn" type="button" name="button">
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
@@ -377,11 +377,11 @@ export function App() {
 }
 
 $(window).on('load', () => {
-  $(".like-btn").on("click", function () {
+  $(".like-mybtn").on("click", function () {
     $(this).toggleClass("is-active");
   });
 
-  $(".minus-btn").on("click", function (e) {
+  $(".minus-mybtn").on("click", function (e) {
     e.preventDefault();
     var $this = $(this);
     var $input = $this.closest("div").find("input");
@@ -396,7 +396,7 @@ $(window).on('load', () => {
     $input.val(value);
   });
 
-  $(".plus-btn").on("click", function (e) {
+  $(".plus-mybtn").on("click", function (e) {
     e.preventDefault();
     var $this = $(this);
     var $input = $this.closest("div").find("input");
