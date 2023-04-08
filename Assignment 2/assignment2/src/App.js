@@ -48,6 +48,13 @@ export function App() {
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
+  let order = {
+    name: '',
+    email: '',
+    card: '',
+    zip: 0
+  };
+
   useEffect(() => {
     total();
   }, [cart]);
@@ -142,6 +149,85 @@ export function App() {
 
 
 
+  function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n)
+  }
+  let cardNumberFunctionality = (e) => {
+    const inputCard = document.getElementById('inputCard');
+    if (!inputCard || !inputCard.value) {
+      return e.preventDefault() // stops modal from being shown
+    } else {
+      inputCard.value = inputCard.value.replace(/-/g, '')
+      let newVal = ''
+      for (var i = 0, nums = 0; i < inputCard.value.length; i++) {
+        if (nums != 0 && nums % 4 == 0) {
+          newVal += '-'
+        }
+        newVal += inputCard.value[i]
+        if (isNumeric(inputCard.value[i])) {
+          nums++
+        }
+      }
+      inputCard.value = newVal
+    }
+  }
+  
+  let showErrorMessage = () => {
+    document.getElementById("submitErrorMessage").classList.remove("invisible");
+    document.getElementById("submitErrorMessage").classList.add("visible");
+  }
+  
+  
+  let validate = () => {
+    let val = true;
+    let email = document.getElementById('inputEmail4');
+    let name = document.getElementById('inputName');
+    let card = document.getElementById('inputCard');
+    let zip = document.getElementById('inputZip');
+  
+    if (!email.value.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )) {
+      email.setAttribute("class", "form-control is-invalid");
+      val = false;
+    }
+    else {
+      email.setAttribute("class", "form-control is-valid");
+      order.email = email.value
+    }
+  
+    if (name.value.length == 0) {
+      name.setAttribute("class", "form-control is-invalid")
+      val = false
+    }
+    else {
+      name.setAttribute("class", "form-control is-valid");
+      order.name = name.value
+    }
+  
+    if (!card.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)) {
+      card.setAttribute("class", "form-control is-invalid")
+      val = false
+    }
+    else {
+      card.setAttribute("class", "form-control is-valid");
+      order.card = card.value
+    }
+
+    if (!(zip.value.length === 5) || !isNumeric(zip.value)) {
+      zip.setAttribute("class", "form-control is-invalid")
+      val = false
+    }
+    else {
+      zip.setAttribute("class", "form-control is-valid");
+      order.zip = zip.value
+    }
+    return val;
+  }
+
+
+
+
 
   // console.log(data);
   // return (
@@ -167,32 +253,33 @@ export function App() {
           <button type='button' className='btn btn-primary' onClick={e => changePage("Cart")}>Checkout</button>
         </div>
         <div>
-          <div className='title'>Buy a Meme</div>
-          {data.animalmals.map((product, index) => (
-            <div key={index} className="item">
-              <div className="buttons">
-                <span className="like-mybtn" onClick={(e) => {e.target.classList.toggle("is-active")}}></span>
-              </div>
+          <div className="shopping-cart">
+            <div className='title d-flex align-items-center justify-content-center'>Buy a Meme</div>
+            {data.animalmals.map((product, index) => (
+              <div key={index} className="item d-flex align-items-center justify-content-center">
+                <div className="buttons">
+                  <span className="like-mybtn" onClick={(e) => { e.target.classList.toggle("is-active") }}></span>
+                </div>
 
-              <div className="image">
-                <img src={product.picture_icon.url} alt={product.picture_icon.alt} width="80" height="80" />
-              </div>
+                <div className="image">
+                  <img src={product.picture_icon.url} alt={product.picture_icon.alt} width="80" height="80" />
+                </div>
 
-              <div className="description">
-                <center><span>{product.animalmalId}</span></center>
-              </div>
+                <div className="description">
+                  <center><span>{product.animalmalId}</span></center>
+                </div>
 
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button" onClick={() => removeFromCart(product)}>
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <span className="m-2">{howManyofThis(product.animalmalId)}</span>
-                <button className="plus-mybtn" type="button" name="button" onClick={() => addToCart(product)}>
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
+                <div className="quantity">
+                  <button className="minus-mybtn" type="button" name="button" onClick={() => removeFromCart(product)}>
+                    <img src="images/minus.svg" alt="" />
+                  </button>
+                  <span className="m-2">{howManyofThis(product.animalmalId)}</span>
+                  <button className="plus-mybtn" type="button" name="button" onClick={() => addToCart(product)}>
+                    <img src="images/plus.svg" alt="" />
+                  </button>
+                </div>
 
-              {/* <div className="quantity">
+                {/* <div className="quantity">
                 <button className="minus-mybtn" type="button" name="button" onClick={() => removeFromCart(product)}>
                   <img src="images/minus.svg" alt="" />
                 </button>
@@ -202,9 +289,10 @@ export function App() {
                 </button>
               </div> */}
 
-              <div className="total-price">{product.price} doge coin/each</div>
-            </div>
-          ))}
+                <div className="total-price">{product.price} doge coin/each</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -245,9 +333,91 @@ export function App() {
             </tbody>
           </table>
           <h1>Payment Information:</h1>
+          <div>
+
+            <div className="row">
+              <div className="col-2"></div>
+
+              <div className="col-8">
+                <form className="row g-3" id="checkout-form">
+
+                  {/* <!-- Full Name --> */}
+                  <div className="col-md-6">
+                    <label htmlFor="inputName" className="form-label">Full Name</label>
+                    <input type="text" className="form-control" id="inputName" />
+                    <div className="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div className="invalid-feedback">
+                      Must be like, "John Doe"
+                    </div>
+                  </div>
+
+                  {/* <!-- Email --> */}
+                  <div className="col-md-6">
+                    <label htmlFor="inputEmail4" className="form-label">Email</label>
+                    <input type="email" className="form-control" id="inputEmail4" />
+                    <div className="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div className="invalid-feedback">
+                      Must be like, "abc@xyz.efg"
+                    </div>
+                  </div>
+
+                  {/* <!-- Credit Card --> */}
+                  <div className="col-12">
+                    <label htmlFor="inputCard" className="form-label">Card</label>
+                    <div className="input-group mb-3">
+
+                      <input type="text" id="inputCard" className="form-control" placeholder="XXXX-XXXX-XXXX-XXXX"
+                        aria-label="Username" aria-describedby="basic-addon1" onInput={e => cardNumberFunctionality(e)} />
+                      <div className="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div className="invalid-feedback">
+                        Must be like, "7777-7777-7777-7777"
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-12">
+                    <label htmlFor="inputAddress" className="form-label">Address</label>
+                    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
+                  </div>
+                  <div className="col-12">
+                    <label htmlFor="inputAddress2" className="form-label">Address 2</label>
+                    <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="inputCity" className="form-label">City</label>
+                    <input type="text" className="form-control" id="inputCity" />
+                  </div>
+                  <div className="col-md-4">
+                    <label htmlFor="inputState" className="form-label">State</label>
+                    <input type="text" className="form-control" id="inputState" />
+                  </div>
+                  <div className="col-md-2">
+                    <label htmlFor="inputZip" className="form-label">Zip</label>
+                    <input type="text" className="form-control" id="inputZip" />
+                    <div className="valid-feedback">
+                        Looks good!
+                      </div>
+                      <div className="invalid-feedback">
+                        Must be a 5 digit number
+                      </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+
+
+          </div>
         </div>
-        <div>
-          <button type='button' className='btn btn-primary' onClick={e => changePage("Confirmation")}>Order</button>
+        <div className='text-center'>
+          <button type='button' className='btn btn-primary m-3' onClick={e => { validate() ? changePage("Confirmation") : showErrorMessage() }}>Order</button>
+          <div id='submitErrorMessage' className='invisible text-danger'>Error with data, unable to procede.</div>
         </div>
       </div>
     );
@@ -296,6 +466,15 @@ export function App() {
   //const [ProductsCategory, setProductsCategory] = useState(Products);
   //displayBrowsePage(Products);
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -370,9 +549,9 @@ export function App() {
 // export function NavBar() { //TODO REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //   return (
 //     <header>
-//       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+//       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 //         <button
-//           class="navbar-toggler"
+//           className="navbar-toggler"
 //           type="button"
 //           data-toggle="collapse"
 //           data-target="#navbarsExample03"
@@ -380,16 +559,16 @@ export function App() {
 //           aria-expanded="false"
 //           aria-label="Toggle navigation"
 //         >
-//           <span class="navbar-toggler-icon"></span>
+//           <span className="navbar-toggler-icon"></span>
 //         </button>
-//         <div class="collapse navbar-collapse" id="navbarsExample03">
-//           <ul class="navbar-nav mr-auto">
-//             <li class="nav-item active">
-//               <a class="nav-link" href="./index.html">Home</a>
+//         <div className="collapse navbar-collapse" id="navbarsExample03">
+//           <ul className="navbar-nav mr-auto">
+//             <li className="nav-item active">
+//               <a className="nav-link" href="./index.html">Home</a>
 //             </li>
-//             <li class="nav-item dropdown">
+//             <li className="nav-item dropdown">
 //               <a
-//                 class="nav-link dropdown-toggle"
+//                 className="nav-link dropdown-toggle"
 //                 href="#"
 //                 id="dropdown03"
 //                 data-toggle="dropdown"
@@ -400,11 +579,11 @@ export function App() {
 
 //               <div
 //                 id="change_nav"
-//                 class="dropdown-menu"
+//                 className="dropdown-menu"
 //                 aria-labelledby="dropdown03"
 //               ></div>
 //             </li>
-//             <li class="nav-item active">
+//             <li className="nav-item active">
 //               <div id="crd">
 //               </div>
 //             </li>
