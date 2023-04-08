@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
-import $ from 'jquery';
+import React, { useState, useEffect } from 'react';
+import data from "./data.json";
 
 // function getProducts() {
 //   return ([
@@ -24,306 +23,228 @@ import $ from 'jquery';
 //   ]);
 // }
 
-let Products = [
-  {
-    "id": 1,
-    "title": "Cat Meme",
-    "description": "a cat meme",
-    "price": 12,
-    "imageurl": "./images/Dinoser_cow.jpg",
-    "imagealt": "dino cow"
-  },
-  {
-    "id": 2,
-    "title": "Dog Meme",
-    "description": "a dog meme",
-    "price": 13,
-    "imageurl": "./images/KnifeCat.jpeg",
-    "imagealt": "knife cow"
-  }
-];
+// let Products = [
+//   {
+//     "id": 1,
+//     "title": "Cat Meme",
+//     "description": "a cat meme",
+//     "price": 12,
+//     "imageurl": "./images/Dinoser_cow.jpg",
+//     "imagealt": "dino cow"
+//   },
+//   {
+//     "id": 2,
+//     "title": "Dog Meme",
+//     "description": "a dog meme",
+//     "price": 13,
+//     "imageurl": "./images/KnifeCat.jpeg",
+//     "imagealt": "knife cow"
+//   }
+// ];
 
 export function App() {
-  let currentPage = "Browse";
-  const [Page, changePage] = useState(currentPage);
+  const [Page, changePage] = useState("Browse");
 
-  //let Products = getProducts();
+  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+
+  useEffect(() => {
+    total();
+  }, [cart]);
+
+  const total = () => {
+    let totalVal = 0;
+    for (let i = 0; i < cart.length; i++) {
+      totalVal += cart[i].price;
+    }
+    setCartTotal(totalVal);
+  };
+
+
+  const addToCart = (el) => {
+    setCart([...cart, el]);
+  };
+
+  const removeFromCart = (product) => {
+    let index = cart.indexOf(product);
+    let hardCopy = [...cart];
+    hardCopy.splice(index, 1);
+    //hardCopy = hardCopy.filter((cartItem) => cartItem.id !== product.id);
+    setCart(hardCopy);
+  };
+
+  //const [Products, setProducts] = useState({animalamls: [{}]});
+
+  // const getProducts = async () => {
+  //   fetch("data.json")
+  //     .then((response) => response.json())
+  //     .then((data) => {setProducts(data); console.log(Products);});
+
+  //   // let response = await fetch("data.json");
+  //   // let data = await response.json();
+  //   // //console.log(`Hello, we are in the set products async method: ${data}`);
+  //   // //products = data.animalamls;
+  //   // setProducts(data);
+  // }
+
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
+
+
+
+
+  // useEffect( async () => {
+  //     fetch("data.json", {headers: {'Accept': 'application/json'}})
+  //       .then((response) => response.json())
+  //       .then((data) => setProducts(data.animalamls));
+  //   }, []);
+
+
+  //if (!Products) {
+
+
+
+  // fetch("data.json")
+  //   .then((response) => response.json())
+  //   .then((data) => setProducts(data.animalamls));
+
+  // let response = await fetch("data.json");
+  //   let data = await response.json();
+  //   setProducts(data.animalamls);
+
+  // let response = await fetch("data.json");
+  // let data = await response.json();
+  // let products = data.animalamls;
+
+
+  // const displayBrowsePage = () => {
+  //   return (
+  //     <div>
+  //       Hello World
+  //     </div>
+  //   );
+  // };
+
+
+
+
+  function howManyofThis(animalmalId) {
+    let hmot = cart.filter((cartItem) => cartItem.animalmalId === animalmalId);
+    return hmot.length;
+  }
+
+  function selectDistinct(cartWithDuplicates) {
+    return cartWithDuplicates.filter((cartItem, index) => cartWithDuplicates.indexOf(cartItem) === index);
+  }
+
+
+
+
+
+
+  // console.log(data);
+  // return (
+  //   <div>
+  //     {data.animalmals.map((product, index) => (
+  //       <div key={index}>
+  //         {product.animalmalId}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 
   const displayBrowsePage = () => {
+    // if (!products) {
+    //   return (<div>
+    //     Loading...
+    //   </div>);
+    // }
+    // console.log(products);
     return (
       <div>
         <div className='text-center'>
           <button type='button' className='btn btn-primary' onClick={e => changePage("Cart")}>Checkout</button>
         </div>
         <div>
-          <div className="shopping-cart">
-            <div className="title">Buy a Meme</div>
-
-            {/* <!-- Product #1 --> */}
-            <div className="item">
+          <div className='title'>Buy a Meme</div>
+          {data.animalmals.map((product, index) => (
+            <div key={index} className="item">
               <div className="buttons">
-                <span className="like-mybtn"></span>
+                <span className="like-mybtn" onClick={(e) => {e.target.classList.toggle("is-active")}}></span>
               </div>
 
               <div className="image">
-                <img src="images/IMG_2286.jpeg" alt="Doge Bread" width="80" height="80" />
+                <img src={product.picture_icon.url} alt={product.picture_icon.alt} width="80" height="80" />
               </div>
 
               <div className="description">
-                <center><span>Doge Bread</span></center>
+                <center><span>{product.animalmalId}</span></center>
               </div>
 
               <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
+                <button className="minus-mybtn" type="button" name="button" onClick={() => removeFromCart(product)}>
                   <img src="images/minus.svg" alt="" />
                 </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
+                <span className="m-2">{howManyofThis(product.animalmalId)}</span>
+                <button className="plus-mybtn" type="button" name="button" onClick={() => addToCart(product)}>
                   <img src="images/plus.svg" alt="" />
                 </button>
               </div>
 
-              <div className="total-price">1 doge coin/each</div>
-            </div>
-
-            {/* <!-- Product #2 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2287.jpeg" alt="Lizard Bros" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>Hug</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
+              {/* <div className="quantity">
+                <button className="minus-mybtn" type="button" name="button" onClick={() => removeFromCart(product)}>
                   <img src="images/minus.svg" alt="" />
                 </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
+                <input type="text" name="name" defaultValue="0" />
+                <button className="plus-mybtn" type="button" name="button" onClick={() => addToCart(product)}>
                   <img src="images/plus.svg" alt="" />
                 </button>
-              </div>
+              </div> */}
 
-              <div className="total-price">1 rizz point/each</div>
+              <div className="total-price">{product.price} doge coin/each</div>
             </div>
-
-            {/* <!-- Product #3 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2288.jpeg" alt="Frogge" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>Sad boi</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 pity coin/each</div>
-            </div>
-
-            {/* <!-- Product #4 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2289.jpeg" alt="Feesh" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>Toxic Feesh</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 death coin/each</div>
-            </div>
-
-            {/* <!-- Product #5 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2290.jpeg" alt="Birb" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>Be smited</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 birb coin/each</div>
-            </div>
-
-            {/* <!-- Product #6 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2291.jpeg" alt="Death" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>hahahahahahaha run</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 million dollars/each</div>
-            </div>
-
-            {/* <!-- Product #7 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2292.jpeg" alt="snek" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>precious baby</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 snek coin/each</div>
-            </div>
-
-            {/* <!-- Product #8 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2293.jpeg" alt="Dinyocow" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>Historical Dinosaur</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 sanity point/each</div>
-            </div>
-
-            {/* <!-- Product #9 --> */}
-            <div className="item">
-              <div className="buttons">
-                <span className="like-mybtn"></span>
-              </div>
-
-              <div className="image">
-                <img src="images/IMG_2294.jpg" alt="Catto" width="80" height="80" />
-              </div>
-
-              <div className="description">
-                <center><span>🔪</span></center>
-              </div>
-
-              <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button">
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" value="1" />
-                <button className="plus-mybtn" type="button" name="button">
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div>
-
-              <div className="total-price">1 liver/each</div>
-            </div>
-            {/* {Products.map((product, index) => (
-            <div>
-              <h1>{product.title}</h1>
-              <p>{product.description}</p>
-              <p>{product.price}</p>
-            </div>
-          ))} */}
-          </div>
+          ))}
         </div>
       </div>
     );
-  }
+  };
+
+
 
   const displayCartPage = () => {
+    console.log(cart);
     return (
       <div>
         <div>
           <button type='button' className='btn btn-primary' onClick={e => changePage("Browse")}>Return</button>
         </div>
         <div>
-          <h1>
-            Cart
-          </h1>
+          <h1>Cart:</h1>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Item</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(selectDistinct(cart)).map((product, index) => (
+                <tr key={index}>
+                  <td><img src={product.picture_icon.url} alt={product.picture_icon.alt} width="80" height="80" /></td>
+                  <td>{product.animalmalId}</td>
+                  <td>${product.price} x {howManyofThis(product.animalmalId)} = {product.price * howManyofThis(product.animalmalId)}</td>
+                </tr>
+              ))}
+              <tr>
+                <th></th>
+                <th>Total: </th>
+                <td>{cartTotal} Doge Coins</td>
+              </tr>
+            </tbody>
+          </table>
+          <h1>Payment Information:</h1>
         </div>
         <div>
           <button type='button' className='btn btn-primary' onClick={e => changePage("Confirmation")}>Order</button>
@@ -341,8 +262,8 @@ export function App() {
           </h1>
         </div>
         <div>
-          <button type='button' className='btn btn-primary' onClick={e => changePage("Browse")}>Cancel</button>
-          <button type='button' className='btn btn-primary' onClick={e => { alert("Thank you for your order!"); changePage("Browse"); }}>Confirm</button>
+          <button type='button' className='btn btn-primary' onClick={e => { setCart([]); changePage("Browse"); }}>Cancel</button>
+          <button type='button' className='btn btn-primary' onClick={e => { alert("Thank you for your order!"); setCart([]); changePage("Browse"); }}>Confirm</button>
         </div>
       </div>
     );
@@ -376,42 +297,61 @@ export function App() {
   //displayBrowsePage(Products);
 }
 
-$(window).on('load', () => {
-  $(".like-mybtn").on("click", function () {
-    $(this).toggleClass("is-active");
-  });
 
-  $(".minus-mybtn").on("click", function (e) {
-    e.preventDefault();
-    var $this = $(this);
-    var $input = $this.closest("div").find("input");
-    var value = parseInt($input.val());
 
-    if (value > 1) {
-      value = value - 1;
-    } else {
-      value = 0;
-    }
 
-    $input.val(value);
-  });
 
-  $(".plus-mybtn").on("click", function (e) {
-    e.preventDefault();
-    var $this = $(this);
-    var $input = $this.closest("div").find("input");
-    var value = parseInt($input.val());
 
-    if (value < 100) {
-      value = value + 1;
-    } else {
-      value = 100;
-    }
 
-    $input.val(value);
-  });
-}
-);
+
+
+// $(window).on('load', () => {
+//   $(".like-mybtn").on("click", function () {
+//     $(this).toggleClass("is-active");
+//   });
+
+//   $(".minus-mybtn").on("click", function (e) {
+//     e.preventDefault();
+//     var $this = $(this);
+//     var $input = $this.closest("div").find("input");
+//     var value = parseInt($input.val());
+
+//     if (value > 1) {
+//       value = value - 1;
+//     } else {
+//       value = 0;
+//     }
+
+//     $input.val(value);
+//   });
+
+//   $(".plus-mybtn").on("click", function (e) {
+//     e.preventDefault();
+//     var $this = $(this);
+//     var $input = $this.closest("div").find("input");
+//     var value = parseInt($input.val());
+
+//     //var $item = $this.closest("div").find("");
+//     //var item = e.target.parentNode.parentNode.getElementById("id").innerHTML;
+//     //console.log(item);
+
+//     if (value < 100) {
+//       value = value + 1;
+//     } else {
+//       value = 100;
+//     }
+
+//     $input.val(value);
+//   });
+// }
+// );
+
+
+
+
+
+
+
 
 // function Browse() {
 

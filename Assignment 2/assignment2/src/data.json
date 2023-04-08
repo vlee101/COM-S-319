@@ -1,214 +1,94 @@
 {
     "animalmals": [
-
-    {
-    "animalmalId": "Catto",
-    "picture_icon":{
-        "url": "images/IMG_2294.jpg",
-        "alt": "Look at that smug catto"
-    },
-    "meme_danger": "WARNING: is smug",
-    "meme_info":{
-        "text": "This meme is a combination of the meme titled \"threats will not work\" (first posted July 9th, 2014) and the smug cat meme (first posted on Oct. 10th, 2009). The first meme with this combination was posted on March 12th, 2015.",
-        "source":{
-            "url":"https://knowyourmeme.com/memes/knife-cat",
-            "title": "Knife Cat Article"
-        }
-    },
-    "picture":{
-        "url": "./images/KnifeCat.jpeg",
-        "alt": "Knife Cat Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/j1Oegd_pLUk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Birb",
-    "picture_icon":{
-        "url": "images/IMG_2290.jpeg",
-        "alt": "BOIIIIIIIIII"
-    },
-    "meme_danger": "WARNING: is angry",
-    "meme_info":{
-        "text": "This meme originated from a YouTube video of a the seagull posted on July 12th, 2012. The image meme was first posted on Sept. 3rd, 2017.",
-        "source":{
-            "url":"https://knowyourmeme.com/memes/inhaling-seagull",
-            "title": "Inhaling Seagull Article"
-        }
-    },
-    "picture":{
-        "url": "./images/InhalingSeagull.jpg",
-        "alt": "Inhaling Seagull Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/_KBudxCO61w\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Doge",
-    "picture_icon":{
-        "url": "images/IMG_2286.jpeg",
-        "alt": "bread doge who would wish for more?"
-    },
-    "meme_danger": "WARNING: may bark",
-    "meme_info":{
-        "text": "This is one of the many variations of the very popular doge meme. The first time the original doge picture was posted with the word doge was on Oct. 28th, 2010.",
-        "source":{
-            "url":"https://knowyourmeme.com/memes/doge",
-            "title": "Doge Article"
-        }
-    },
-    "picture":{
-        "url": "./images/DogeMeme.jpg",
-        "alt": "Bread Doge Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/D-UmfqFjpl0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-        "animalmalId": "Feesh",
-        "picture_icon":{
-            "url": "images/IMG_2289.jpeg",
-            "alt": "Eat that carrot feesh"
+        {
+            "animalmalId": "Catto",
+            "picture_icon": {
+                "url": "images/IMG_2294.jpg",
+                "alt": "Look at that smug catto"
+            },
+            "meme_danger": "WARNING: is smug",
+            "price": 1
         },
-        "meme_danger": "WARNING: death",
-        "meme_info":{
-            "text": "This meme originated from a YouTube video of a fish posted on July 25th, 2019. The image meme was first posted on Nov. 17th, 2019.",
-            "source":{
-                "url":"https://knowyourmeme.com/memes/pufferfish-eating-a-carrot",
-                "title": "Pufferfish Article"
-            }
+        {
+            "animalmalId": "Birb",
+            "picture_icon": {
+                "url": "images/IMG_2290.jpeg",
+                "alt": "BOIIIIIIIIII"
+            },
+            "meme_danger": "WARNING: is angry",
+            "price": 2
         },
-        "picture":{
-            "url": "./images/PufferfishMeme.png",
-            "alt": "Pufferfish Meme"
+        {
+            "animalmalId": "Doge",
+            "picture_icon": {
+                "url": "images/IMG_2286.jpeg",
+                "alt": "bread doge who would wish for more?"
+            },
+            "meme_danger": "WARNING: may bark",
+            "price": 3
         },
-        "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/lss2ahPcuqU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Dragoon",
-    "picture_icon":{
-        "url": "images/IMG_2287.jpeg",
-        "alt": "I want a friend like that :,D"
-    },
-    "meme_danger": "WARNING: wholesome and not pertained to reality. If you see a Komodo Dragoon please RUN",
-    "meme_info":{
-        "text": "An alt version of the very popular \"I know that feel bro\" meme. But it's Komodo Dragoons! The best Dragoon and we love to see it. Very wholesome indeed.",
-        "source":{
-            "url":"https://knowyourmeme.com/photos/547545-i-know-that-feel-bro",
-            "title": "Dragoon Hugging"
-        }
-    },
-    "picture":{
-        "url": "./images/Just_two_bros_hugging.jpg",
-        "alt": "Komodo Dragons Hugging Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Mun39kXNPIk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Frogge",
-    "picture_icon":{
-        "url": "images/IMG_2288.jpeg",
-        "alt": "sad boi"
-    },
-    "meme_danger": "WARNING: is sad and needs hugs. Will be compelled to pet it",
-    "meme_info":{
-        "text": "Also known as a Black Rain Frog, or a sad avocado.",
-        "source":{
-            "url":"https://knowyourmeme.com/photos/1356666-animals",
-            "title": "Sad Avocado"
-        }
-    },
-    "picture":{
-        "url": "./images/sad_froggo.jpg",
-        "alt": "Sad Avocado Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/HBxn56l9WcU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Slippery Noodle",
-    "picture_icon":{
-        "url": "images/IMG_2292.jpeg",
-        "alt": "Look at that snout, don't you just want to boop it?"
-    },
-    "meme_danger": "WARNING: precious",
-    "meme_info":{
-        "text": "Ball pythons are often thought of as precious and as the trend of showing off cute animalmals became more wide spread, these slippery noodles have been put in warm sweaters and fancy hats! Wholesome for the whole family and perfect for booping!",
-        "source":{
-            "url":"https://www.reddit.com/r/Sneks/comments/c11zfp/sombrero_snek/",
-            "title": "Sombrero Snek"
-        }
-    },
-    "picture":{
-        "url": "./images/snek_with_a_sombrero.jpg",
-        "alt": "Sombrero Snek Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0arsPXEaIUY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Long Neck Deer",
-    "picture_icon":{
-        "url": "images/IMG_2293.jpeg",
-        "alt": "Someone's excited to see a long neck deer I see"
-    },
-    "meme_danger": "WARNING: what? what is going on?",
-    "meme_info":{
-        "text": "Internet personality Skweezy Jibbs meets a long neck deer back in the wee ole days of 2011.",
-        "source":{
-            "url":"https://twitter.com/Skweezy/status/1417302006213996545",
-            "title": "the man the legend the myth"
-        }
-    },
-    "picture":{
-        "url": "./images/Dinoser_cow.jpg",
-        "alt": "Dinoser Cow Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/6NDYf3RZ1eY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-    "animalmalId": "Immortal Snail",
-    "picture_icon":{
-        "url": "images/IMG_2291.jpeg",
-        "alt": "DON'T LET IT TOUCH YOU"
-    },
-    "meme_danger": "WARNING: is coming for you",
-    "meme_info":{
-        "text": "This meme is based on the hypothetical scenario that you receive a million dollars and become immortal, but you are followed by an immortal snail and if he touches you, you die. The popularity of this hypothetical scenario spread since its first mention on a podcast in 2014 and it has been the inspiration for many memes about it.",
-        "source":{
-            "url":"https://knowyourmeme.com/memes/immortal-snail",
-            "title": "Immortal Snail Meme Article"
-        }
-    },
-    "picture":{
-        "url": "./images/ImmortalSnail.jpeg",
-        "alt": "Immortal Snail Meme"
-    },
-    "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/h9Kg2rD5JdY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-    },
-
-    {
-        "animalmalId": "Abraham Aldaco: Rare Pokemon",
-        "picture_icon":{
-            "url": "images/IMG_2380.gif",
-            "alt": "Picture of the Amazing Professor :3"
+        {
+            "animalmalId": "Feesh",
+            "picture_icon": {
+                "url": "images/IMG_2289.jpeg",
+                "alt": "Eat that carrot feesh"
+            },
+            "meme_danger": "WARNING: death",
+            "price": 4
         },
-        "meme_danger": "WARNING: notices if you miss class",
-        "meme_info":{
-            "text": "Catch at your own risk: this Pokemon is dangerous.",
-            "source":{
-                "url":"",
-                "title": ""
-            }
+        {
+            "animalmalId": "Dragoon",
+            "picture_icon": {
+                "url": "images/IMG_2287.jpeg",
+                "alt": "I want a friend like that :,D"
+            },
+            "meme_danger": "WARNING: wholesome and not pertained to reality. If you see a Komodo Dragoon please RUN",
+            "price": 5
         },
-        "picture":{
-            "url": "./images/professor.jpg",
-            "alt": "Very happy prof"
+        {
+            "animalmalId": "Frogge",
+            "picture_icon": {
+                "url": "images/IMG_2288.jpeg",
+                "alt": "sad boi"
+            },
+            "meme_danger": "WARNING: is sad and needs hugs. Will be compelled to pet it",
+            "price": 6
         },
-        "video": ""
-    }
+        {
+            "animalmalId": "Slippery Noodle",
+            "picture_icon": {
+                "url": "images/IMG_2292.jpeg",
+                "alt": "Look at that snout, don't you just want to boop it?"
+            },
+            "meme_danger": "WARNING: precious",
+            "price": 7
+        },
+        {
+            "animalmalId": "Long Neck Deer",
+            "picture_icon": {
+                "url": "images/IMG_2293.jpeg",
+                "alt": "Someone's excited to see a long neck deer I see"
+            },
+            "meme_danger": "WARNING: what? what is going on?",
+            "price": 8
+        },
+        {
+            "animalmalId": "Immortal Snail",
+            "picture_icon": {
+                "url": "images/IMG_2291.jpeg",
+                "alt": "DON'T LET IT TOUCH YOU"
+            },
+            "meme_danger": "WARNING: is coming for you",
+            "price": 9
+        },
+        {
+            "animalmalId": "Abraham Aldaco: Rare Pokemon",
+            "picture_icon": {
+                "url": "images/IMG_2380.gif",
+                "alt": "Picture of the Amazing Professor :3"
+            },
+            "meme_danger": "WARNING: notices if you miss class",
+            "price": 1000000
+        }
     ]
 }
