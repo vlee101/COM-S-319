@@ -29,7 +29,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.shopping-cart {
+/* .shopping-cart {
   width: 750px;
   height: 1260px;
   margin: 80px auto;
@@ -39,10 +39,11 @@ body {
 
   display: flex;
   flex-direction: column;
-}
+} */
 
 .title {
   height: 60px;
+  width: 750px;
   border-bottom: 1px solid #e1e8ee;
   padding: 20px 30px;
   color: #5e6977;
@@ -51,14 +52,18 @@ body {
 }
 
 .item {
+  position: center;
+  width: 750px;
   padding: 20px 30px;
   height: 120px;
   display: flex;
   border-top: 1px solid #e1e8ee;
-  
+  background: white;
 }
 
 .item:not(:nth-child(11)) {
+  position: center;
+  width: 750px;
   border-bottom: 1px solid #e1e8ee;
 }
 

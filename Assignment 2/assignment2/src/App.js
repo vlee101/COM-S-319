@@ -44,7 +44,7 @@ import data from "./data.json";
 
 export function App() {
   const [Page, changePage] = useState("Browse");
-
+  const [products, setProducts] = useState(data.animalmals);
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
@@ -145,10 +145,6 @@ export function App() {
     return cartWithDuplicates.filter((cartItem, index) => cartWithDuplicates.indexOf(cartItem) === index);
   }
 
-
-
-
-
   function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n)
   }
@@ -248,14 +244,16 @@ export function App() {
     // }
     // console.log(products);
     return (
-      <div>
-        <div className='text-center'>
+      <div className="text-center">
+        <div>
           <button type='button' className='btn btn-primary' onClick={e => changePage("Cart")}>Checkout</button>
         </div>
         <div>
-          <div className="shopping-cart">
+        <input id="searchbar" onKeyUp={(e) => search_memes()} type="text"
+        name="search" placeholder="Search memes.."></input>
+          <center>
             <div className='title d-flex align-items-center justify-content-center'>Buy a Meme</div>
-            {data.animalmals.map((product, index) => (
+            {products.map((product, index) => (
               <div key={index} className="item d-flex align-items-center justify-content-center">
                 <div className="buttons">
                   <span className="like-mybtn" onClick={(e) => { e.target.classList.toggle("is-active") }}></span>
@@ -292,13 +290,21 @@ export function App() {
                 <div className="total-price">{product.price} doge coin/each</div>
               </div>
             ))}
-          </div>
+          </center>
         </div>
       </div>
     );
   };
 
-
+  const search_memes = () => {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('item');
+    console.log(input);
+    let filtered = data.animalmals.filter(product => product.animalmalId.toLowerCase().includes(input));
+    setProducts(filtered);
+    console.log(filtered);
+  }
 
   const displayCartPage = () => {
     console.log(cart);
@@ -339,7 +345,7 @@ export function App() {
               <div className="col-2"></div>
 
               <div className="col-8">
-                <form className="row g-3" id="checkout-form">
+                <form className="row g-3 checkoutform" id="checkout-form">
 
                   {/* <!-- Full Name --> */}
                   <div className="col-md-6">
@@ -417,7 +423,7 @@ export function App() {
         </div>
         <div className='text-center'>
           <button type='button' className='btn btn-primary m-3' onClick={e => { validate() ? changePage("Confirmation") : showErrorMessage() }}>Order</button>
-          <div id='submitErrorMessage' className='invisible text-danger'>Error with data, unable to procede.</div>
+          <div id='submitErrorMessage' className='invisible text-danger'>Error with data, unable to proceed.</div>
         </div>
       </div>
     );
