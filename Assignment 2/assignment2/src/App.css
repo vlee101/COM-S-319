@@ -76,3 +76,7 @@ input[type=text]:focus {
   width: 800px;
   height: 500px;
 }
+
+.boldText {
+  font-weight: bold;
+}

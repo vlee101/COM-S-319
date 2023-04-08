@@ -2,58 +2,20 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import data from "./data.json";
 
-// function getProducts() {
-//   return ([
-//     {
-//       "id": 1,
-//       "title": "Cat Meme",
-//       "description": "a cat meme",
-//       "price": 12,
-//       "imageurl": "./images/Dinoser_cow.jpg",
-//       "imagealt": "dino cow"
-//     },
-//     {
-//       "id": 2,
-//       "title": "Dog Meme",
-//       "description": "a dog meme",
-//       "price": 13,
-//       "imageurl": "./images/KnifeCat.jpeg",
-//       "imagealt": "knife cow"
-//     }
-//   ]);
-// }
-
-// let Products = [
-//   {
-//     "id": 1,
-//     "title": "Cat Meme",
-//     "description": "a cat meme",
-//     "price": 12,
-//     "imageurl": "./images/Dinoser_cow.jpg",
-//     "imagealt": "dino cow"
-//   },
-//   {
-//     "id": 2,
-//     "title": "Dog Meme",
-//     "description": "a dog meme",
-//     "price": 13,
-//     "imageurl": "./images/KnifeCat.jpeg",
-//     "imagealt": "knife cow"
-//   }
-// ];
-
 export function App() {
   const [Page, changePage] = useState("Browse");
   const [products, setProducts] = useState(data.animalmals);
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-
-  let order = {
+  const [paymentInfo, setPaymentInfo] = useState({
     name: '',
     email: '',
     card: '',
+    address: '',
+    city: '',
+    state: '',
     zip: 0
-  };
+  });
 
   useEffect(() => {
     total();
@@ -76,64 +38,8 @@ export function App() {
     let index = cart.indexOf(product);
     let hardCopy = [...cart];
     hardCopy.splice(index, 1);
-    //hardCopy = hardCopy.filter((cartItem) => cartItem.id !== product.id);
     setCart(hardCopy);
   };
-
-  //const [Products, setProducts] = useState({animalamls: [{}]});
-
-  // const getProducts = async () => {
-  //   fetch("data.json")
-  //     .then((response) => response.json())
-  //     .then((data) => {setProducts(data); console.log(Products);});
-
-  //   // let response = await fetch("data.json");
-  //   // let data = await response.json();
-  //   // //console.log(`Hello, we are in the set products async method: ${data}`);
-  //   // //products = data.animalamls;
-  //   // setProducts(data);
-  // }
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
-
-
-
-
-  // useEffect( async () => {
-  //     fetch("data.json", {headers: {'Accept': 'application/json'}})
-  //       .then((response) => response.json())
-  //       .then((data) => setProducts(data.animalamls));
-  //   }, []);
-
-
-  //if (!Products) {
-
-
-
-  // fetch("data.json")
-  //   .then((response) => response.json())
-  //   .then((data) => setProducts(data.animalamls));
-
-  // let response = await fetch("data.json");
-  //   let data = await response.json();
-  //   setProducts(data.animalamls);
-
-  // let response = await fetch("data.json");
-  // let data = await response.json();
-  // let products = data.animalamls;
-
-
-  // const displayBrowsePage = () => {
-  //   return (
-  //     <div>
-  //       Hello World
-  //     </div>
-  //   );
-  // };
-
-
 
 
   function howManyofThis(animalmalId) {
@@ -167,20 +73,62 @@ export function App() {
       inputCard.value = newVal
     }
   }
-  
+
+  let displayCartContents = () => {
+    return (
+      <table className='table'>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Item</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {(selectDistinct(cart)).map((product, index) => (
+            <tr key={index}>
+              <td><img src={product.picture_icon.url} alt={product.picture_icon.alt} width="80" height="80" /></td>
+              <td>{product.animalmalId}</td>
+              <td>${product.price} x {howManyofThis(product.animalmalId)} = {product.price * howManyofThis(product.animalmalId)}</td>
+            </tr>
+          ))}
+          <tr>
+            <th></th>
+            <th>Total: </th>
+            <td>{cartTotal} Doge Coins</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+
   let showErrorMessage = () => {
     document.getElementById("submitErrorMessage").classList.remove("invisible");
     document.getElementById("submitErrorMessage").classList.add("visible");
   }
-  
-  
+
+
   let validate = () => {
     let val = true;
-    let email = document.getElementById('inputEmail4');
+    let payInfo = {
+      name: '',
+      email: '',
+      card: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: 0
+    };
+
     let name = document.getElementById('inputName');
+    let email = document.getElementById('inputEmail');
     let card = document.getElementById('inputCard');
+    let address1 = document.getElementById('inputAddress');
+    let address2 = document.getElementById('inputAddress2');
+    let city = document.getElementById('inputCity');
+    let state = document.getElementById('inputState');
     let zip = document.getElementById('inputZip');
-  
+
     if (!email.value.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     )) {
@@ -189,25 +137,25 @@ export function App() {
     }
     else {
       email.setAttribute("class", "form-control is-valid");
-      order.email = email.value
+      payInfo.email = email.value
     }
-  
+
     if (name.value.length == 0) {
       name.setAttribute("class", "form-control is-invalid")
       val = false
     }
     else {
       name.setAttribute("class", "form-control is-valid");
-      order.name = name.value
+      payInfo.name = name.value
     }
-  
+
     if (!card.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)) {
       card.setAttribute("class", "form-control is-invalid")
       val = false
     }
     else {
       card.setAttribute("class", "form-control is-valid");
-      order.card = card.value
+      payInfo.card = card.value
     }
 
     if (!(zip.value.length === 5) || !isNumeric(zip.value)) {
@@ -216,43 +164,29 @@ export function App() {
     }
     else {
       zip.setAttribute("class", "form-control is-valid");
-      order.zip = zip.value
+      payInfo.zip = zip.value
     }
+
+    payInfo.address = address1.value + address2.value;
+    payInfo.city = city.value;
+    payInfo.state = state.value;
+
+    console.log(payInfo);
+    setPaymentInfo(payInfo);
     return val;
   }
 
-
-
-
-
-  // console.log(data);
-  // return (
-  //   <div>
-  //     {data.animalmals.map((product, index) => (
-  //       <div key={index}>
-  //         {product.animalmalId}
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
-
   const displayBrowsePage = () => {
-    // if (!products) {
-    //   return (<div>
-    //     Loading...
-    //   </div>);
-    // }
-    // console.log(products);
     return (
       <div className="text-center">
         <div>
-          <button type='button' className='btn btn-primary' onClick={e => changePage("Cart")}>Checkout</button>
+          <button type='button' className='btn btn-danger m-4' onClick={e => changePage("Cart")}>Checkout</button>
         </div>
         <div>
-        <input id="searchbar" onKeyUp={(e) => search_memes()} type="text"
-        name="search" placeholder="Search memes.."></input>
+          <input id="searchbar" onKeyUp={(e) => search_memes()} type="text"
+            name="search" placeholder="Search memes.."></input>
           <center>
-            <div className='title d-flex align-items-center justify-content-center'>Buy a Meme</div>
+            <h1 className='m-5'>Buy a Meme</h1>
             {products.map((product, index) => (
               <div key={index} className="item d-flex align-items-center justify-content-center">
                 <div className="buttons">
@@ -277,16 +211,6 @@ export function App() {
                   </button>
                 </div>
 
-                {/* <div className="quantity">
-                <button className="minus-mybtn" type="button" name="button" onClick={() => removeFromCart(product)}>
-                  <img src="images/minus.svg" alt="" />
-                </button>
-                <input type="text" name="name" defaultValue="0" />
-                <button className="plus-mybtn" type="button" name="button" onClick={() => addToCart(product)}>
-                  <img src="images/plus.svg" alt="" />
-                </button>
-              </div> */}
-
                 <div className="total-price">{product.price} doge coin/each</div>
               </div>
             ))}
@@ -298,7 +222,7 @@ export function App() {
 
   const search_memes = () => {
     let input = document.getElementById('searchbar').value
-    input=input.toLowerCase();
+    input = input.toLowerCase();
     let x = document.getElementsByClassName('item');
     console.log(input);
     let filtered = data.animalmals.filter(product => product.animalmalId.toLowerCase().includes(input));
@@ -311,33 +235,11 @@ export function App() {
     return (
       <div>
         <div>
-          <button type='button' className='btn btn-primary' onClick={e => changePage("Browse")}>Return</button>
+          <button type='button' className='btn btn-danger' onClick={e => changePage("Browse")}>Return</button>
         </div>
         <div>
           <h1>Cart:</h1>
-          <table className='table'>
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Item</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(selectDistinct(cart)).map((product, index) => (
-                <tr key={index}>
-                  <td><img src={product.picture_icon.url} alt={product.picture_icon.alt} width="80" height="80" /></td>
-                  <td>{product.animalmalId}</td>
-                  <td>${product.price} x {howManyofThis(product.animalmalId)} = {product.price * howManyofThis(product.animalmalId)}</td>
-                </tr>
-              ))}
-              <tr>
-                <th></th>
-                <th>Total: </th>
-                <td>{cartTotal} Doge Coins</td>
-              </tr>
-            </tbody>
-          </table>
+          {displayCartContents()}
           <h1>Payment Information:</h1>
           <div>
 
@@ -347,7 +249,6 @@ export function App() {
               <div className="col-8">
                 <form className="row g-3 checkoutform" id="checkout-form">
 
-                  {/* <!-- Full Name --> */}
                   <div className="col-md-6">
                     <label htmlFor="inputName" className="form-label">Full Name</label>
                     <input type="text" className="form-control" id="inputName" />
@@ -359,10 +260,9 @@ export function App() {
                     </div>
                   </div>
 
-                  {/* <!-- Email --> */}
                   <div className="col-md-6">
-                    <label htmlFor="inputEmail4" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="inputEmail4" />
+                    <label htmlFor="inputEmail" className="form-label">Email</label>
+                    <input type="email" className="form-control" id="inputEmail" />
                     <div className="valid-feedback">
                       Looks good!
                     </div>
@@ -371,7 +271,6 @@ export function App() {
                     </div>
                   </div>
 
-                  {/* <!-- Credit Card --> */}
                   <div className="col-12">
                     <label htmlFor="inputCard" className="form-label">Card</label>
                     <div className="input-group mb-3">
@@ -407,22 +306,19 @@ export function App() {
                     <label htmlFor="inputZip" className="form-label">Zip</label>
                     <input type="text" className="form-control" id="inputZip" />
                     <div className="valid-feedback">
-                        Looks good!
-                      </div>
-                      <div className="invalid-feedback">
-                        Must be a 5 digit number
-                      </div>
+                      Looks good!
+                    </div>
+                    <div className="invalid-feedback">
+                      Must be a 5 digit number
+                    </div>
                   </div>
                 </form>
               </div>
             </div>
-
-
-
           </div>
         </div>
         <div className='text-center'>
-          <button type='button' className='btn btn-primary m-3' onClick={e => { validate() ? changePage("Confirmation") : showErrorMessage() }}>Order</button>
+          <button type='button' className='btn btn-danger m-3' onClick={e => { validate() ? changePage("Confirmation") : showErrorMessage() }}>Order</button>
           <div id='submitErrorMessage' className='invisible text-danger'>Error with data, unable to proceed.</div>
         </div>
       </div>
@@ -436,10 +332,34 @@ export function App() {
           <h1>
             Confirmation
           </h1>
+          <div>
+            <h2>Cart:</h2>
+            {displayCartContents()}
+          </div>
+          <div className="row">
+            <div className="col-4"></div>
+            <div className="col-8">
+              <h2>Payment Info:</h2>
+              <h5 className='boldText'>Name:</h5>
+              <p>{paymentInfo.name}</p>
+              <h5 className='boldText'>Email:</h5>
+              <p>{paymentInfo.email}</p>
+              <h5 className='boldText'>Card:</h5>
+              <p>{paymentInfo.card}</p>
+              <h5 className='boldText'>Address:</h5>
+              <p>{paymentInfo.address}</p>
+              <h5 className='boldText'>City:</h5>
+              <p>{paymentInfo.city}</p>
+              <h5 className='boldText'>State:</h5>
+              <p>{paymentInfo.state}</p>
+              <h5 className='boldText'>Zip:</h5>
+              <p>{paymentInfo.zip}</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <button type='button' className='btn btn-primary' onClick={e => { setCart([]); changePage("Browse"); }}>Cancel</button>
-          <button type='button' className='btn btn-primary' onClick={e => { alert("Thank you for your order!"); setCart([]); changePage("Browse"); }}>Confirm</button>
+        <div className='text-center'>
+          <button type='button' className='btn btn-danger m-2' onClick={e => { setCart([]); changePage("Browse"); }}>Cancel</button>
+          <button type='button' className='btn btn-danger m-2' onClick={e => { alert("Thank you for your order!"); setCart([]); changePage("Browse"); }}>Confirm</button>
         </div>
       </div>
     );
@@ -466,177 +386,4 @@ export function App() {
       </div>
     );
   }
-
-
-
-  //const [ProductsCategory, setProductsCategory] = useState(Products);
-  //displayBrowsePage(Products);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(window).on('load', () => {
-//   $(".like-mybtn").on("click", function () {
-//     $(this).toggleClass("is-active");
-//   });
-
-//   $(".minus-mybtn").on("click", function (e) {
-//     e.preventDefault();
-//     var $this = $(this);
-//     var $input = $this.closest("div").find("input");
-//     var value = parseInt($input.val());
-
-//     if (value > 1) {
-//       value = value - 1;
-//     } else {
-//       value = 0;
-//     }
-
-//     $input.val(value);
-//   });
-
-//   $(".plus-mybtn").on("click", function (e) {
-//     e.preventDefault();
-//     var $this = $(this);
-//     var $input = $this.closest("div").find("input");
-//     var value = parseInt($input.val());
-
-//     //var $item = $this.closest("div").find("");
-//     //var item = e.target.parentNode.parentNode.getElementById("id").innerHTML;
-//     //console.log(item);
-
-//     if (value < 100) {
-//       value = value + 1;
-//     } else {
-//       value = 100;
-//     }
-
-//     $input.val(value);
-//   });
-// }
-// );
-
-
-
-
-
-
-
-
-// function Browse() {
-
-// };
-
-// function Cart() {
-
-// }
-
-// function Confirmation() {
-
-// }
-
-
-
-// export function NavBar() { //TODO REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//   return (
-//     <header>
-//       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-//         <button
-//           className="navbar-toggler"
-//           type="button"
-//           data-toggle="collapse"
-//           data-target="#navbarsExample03"
-//           aria-controls="navbarsExample03"
-//           aria-expanded="false"
-//           aria-label="Toggle navigation"
-//         >
-//           <span className="navbar-toggler-icon"></span>
-//         </button>
-//         <div className="collapse navbar-collapse" id="navbarsExample03">
-//           <ul className="navbar-nav mr-auto">
-//             <li className="nav-item active">
-//               <a className="nav-link" href="./index.html">Home</a>
-//             </li>
-//             <li className="nav-item dropdown">
-//               <a
-//                 className="nav-link dropdown-toggle"
-//                 href="#"
-//                 id="dropdown03"
-//                 data-toggle="dropdown"
-//                 aria-haspopup="true"
-//                 aria-expanded="false"
-//               >Our Amazing Catalog</a
-//               >
-
-//               <div
-//                 id="change_nav"
-//                 className="dropdown-menu"
-//                 aria-labelledby="dropdown03"
-//               ></div>
-//             </li>
-//             <li className="nav-item active">
-//               <div id="crd">
-//               </div>
-//             </li>
-//           </ul>
-//         </div>
-//       </nav>
-//     </header>
-//   );
-// };
-
-{/* export function Browse() {
-  return (
-    <div>
-      <h1>Bros</h1>
-    </div>
-  );
-};
-
-export function Cart() {
-  return (
-    <div>
-      <h1>Cart</h1>
-    </div>
-  );
-};
-
-export function Confirmation() {
-  return (
-    <div>
-      <h1>Confirmation</h1>
-    </div>
-  );
-}; */}
-
-{/* <div className="App"> TODO REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div> */}
