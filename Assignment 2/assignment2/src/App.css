@@ -73,10 +73,22 @@ input[type=text]:focus {
 .checkoutform{
   background-color: rgb(253, 206, 206);
   margin: auto;
-  width: 800px;
-  height: 500px;
+  width: auto;
+  height: auto;
+  padding: 20px;
 }
 
 .boldText {
   font-weight: bold;
+}
+
+.indent {
+  text-indent: 50px;
+}
+
+.square{
+  background-color: white;
+  margin: auto;
+  width: auto;
+  height: auto;
 }

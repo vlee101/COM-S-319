@@ -43,7 +43,7 @@ body {
 
 .title {
   height: 60px;
-  width: 750px;
+  width: auto;
   border-bottom: 1px solid #e1e8ee;
   padding: 20px 30px;
   color: #5e6977;
@@ -53,8 +53,8 @@ body {
 
 .item {
   position: center;
-  width: 750px;
-  padding: 20px 30px;
+  width: 650px;
+  /* padding: 20px 20px; */
   height: 120px;
   display: flex;
   border-top: 1px solid #e1e8ee;
@@ -63,7 +63,7 @@ body {
 
 .item:not(:nth-child(11)) {
   position: center;
-  width: 750px;
+  width: 650px;
   border-bottom: 1px solid #e1e8ee;
 }
 
@@ -182,7 +182,7 @@ input:focus {
 /* Responsive */
 @media (max-width: 800px) {
   .shopping-cart {
-    width: 100%;
+    width: auto;
     height: auto;
     overflow: hidden;
   }

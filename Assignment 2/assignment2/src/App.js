@@ -62,7 +62,7 @@ export function App() {
       inputCard.value = inputCard.value.replace(/-/g, '')
       let newVal = ''
       for (var i = 0, nums = 0; i < inputCard.value.length; i++) {
-        if (nums != 0 && nums % 4 == 0) {
+        if (nums !== 0 && nums % 4 === 0) {
           newVal += '-'
         }
         newVal += inputCard.value[i]
@@ -140,7 +140,7 @@ export function App() {
       payInfo.email = email.value
     }
 
-    if (name.value.length == 0) {
+    if (name.value.length === 0) {
       name.setAttribute("class", "form-control is-invalid")
       val = false
     }
@@ -167,9 +167,32 @@ export function App() {
       payInfo.zip = zip.value
     }
 
-    payInfo.address = address1.value + address2.value;
-    payInfo.city = city.value;
-    payInfo.state = state.value;
+    if (address1.value.length === 0) {
+      address1.setAttribute("class", "form-control is-invalid")
+      val = false
+    }
+    else {
+      address1.setAttribute("class", "form-control is-valid");
+      payInfo.address = address1.value + address2.value;
+    }
+
+    if (city.value.length === 0) {
+      city.setAttribute("class", "form-control is-invalid")
+      val = false
+    }
+    else {
+      city.setAttribute("class", "form-control is-valid");
+      payInfo.city = city.value;
+    }
+
+    if (state.value.length === 0) {
+      state.setAttribute("class", "form-control is-invalid")
+      val = false
+    }
+    else {
+      state.setAttribute("class", "form-control is-valid");
+      payInfo.state = state.value;
+    }
 
     console.log(payInfo);
     setPaymentInfo(payInfo);
@@ -215,6 +238,7 @@ export function App() {
               </div>
             ))}
           </center>
+          <br></br>
         </div>
       </div>
     );
@@ -289,6 +313,12 @@ export function App() {
                   <div className="col-12">
                     <label htmlFor="inputAddress" className="form-label">Address</label>
                     <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
+                    <div className="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div className="invalid-feedback">
+                      Must have value
+                    </div>
                   </div>
                   <div className="col-12">
                     <label htmlFor="inputAddress2" className="form-label">Address 2</label>
@@ -297,10 +327,22 @@ export function App() {
                   <div className="col-md-6">
                     <label htmlFor="inputCity" className="form-label">City</label>
                     <input type="text" className="form-control" id="inputCity" />
+                    <div className="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div className="invalid-feedback">
+                      Must have value
+                    </div>
                   </div>
                   <div className="col-md-4">
                     <label htmlFor="inputState" className="form-label">State</label>
                     <input type="text" className="form-control" id="inputState" />
+                    <div className="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div className="invalid-feedback">
+                      Must have value
+                    </div>
                   </div>
                   <div className="col-md-2">
                     <label htmlFor="inputZip" className="form-label">Zip</label>
@@ -337,23 +379,22 @@ export function App() {
             {displayCartContents()}
           </div>
           <div className="row">
-            <div className="col-4"></div>
-            <div className="col-8">
+            <div className="square">
               <h2>Payment Info:</h2>
               <h5 className='boldText'>Name:</h5>
-              <p>{paymentInfo.name}</p>
+              <p className='indent'> {paymentInfo.name}</p>
               <h5 className='boldText'>Email:</h5>
-              <p>{paymentInfo.email}</p>
+              <p className='indent'> {paymentInfo.email}</p>
               <h5 className='boldText'>Card:</h5>
-              <p>{paymentInfo.card}</p>
+              <p className='indent'> {paymentInfo.card}</p>
               <h5 className='boldText'>Address:</h5>
-              <p>{paymentInfo.address}</p>
+              <p className='indent'> {paymentInfo.address}</p>
               <h5 className='boldText'>City:</h5>
-              <p>{paymentInfo.city}</p>
+              <p className='indent'> {paymentInfo.city}</p>
               <h5 className='boldText'>State:</h5>
-              <p>{paymentInfo.state}</p>
+              <p className='indent'> {paymentInfo.state}</p>
               <h5 className='boldText'>Zip:</h5>
-              <p>{paymentInfo.zip}</p>
+              <p className='indent'> {paymentInfo.zip}</p>
             </div>
           </div>
         </div>
