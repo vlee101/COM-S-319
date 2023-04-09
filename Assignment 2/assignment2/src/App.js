@@ -36,9 +36,11 @@ export function App() {
 
   const removeFromCart = (product) => {
     let index = cart.indexOf(product);
-    let hardCopy = [...cart];
-    hardCopy.splice(index, 1);
-    setCart(hardCopy);
+    if (index !== -1) {
+      let hardCopy = [...cart];
+      hardCopy.splice(index, 1);
+      setCart(hardCopy);
+    }
   };
 
 
