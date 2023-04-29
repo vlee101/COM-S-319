@@ -21,3 +21,10 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
 }
+
+.outline{
+  background-color: #ffffff;
+  display: inline-block;
+  align-items: center;
+  flex-wrap: wrap;
+}

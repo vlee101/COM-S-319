@@ -191,7 +191,7 @@ function App() {
       <div>
         {NavBar()}
         <div className="row d-flex justify-content-center">
-          <h3 className="text-center">Add a new product :</h3>
+          <h1 className="text-center">Add a New Product:</h1>
           <form action="" className="row d-flex justify-content-center col-lg-3 ">
             <input
               type="number"
@@ -322,7 +322,7 @@ function App() {
       <div className="text-center">
         {NavBar()}
         <div className="row d-flex justify-content-center">
-          <h3>Delete one product:</h3>
+          <h1>Delete One Product:</h1>
 
           <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id = e.target.value]} />
           {<div>Product: {showOneItem}</div>}
@@ -338,24 +338,31 @@ function App() {
     return (
       <div>
         {NavBar()}
-        <h1 className="text-center">Website made by:</h1>
-        <h3 className="text-center">Vicky Lee (vlee101) and Olivia Wiench (owiench)</h3>
-        <div className="container mt-5">
-          <div className="row">
-            <div className="col text-center">
-              <h5>Class Information:</h5>
-              <p>Professor Abraham Aldaco<br></br>
-                Com S 319 - Construction of User Interfaces<br></br>
-                Assignment 3<br></br>
-                April 30, 2023
-              </p>
-            </div>
-            <div className="col">
-              <h5 className="text-center">Project Information:</h5>
-              <p className="text-left">This project uses MERN to implement CRUD operations on a catalog of memes. The data is stored in a Mongo database and the use can view all the products, view just one product by searching by id, add a new product, update an existing product, and delete an existing product.</p>
+        <center>
+          <div className='outline'>
+            <h1 className="text-center">Website made by:</h1>
+            <h3 className="text-center">Vicky Lee (vlee101) and Olivia Wiench (owiench)</h3>
+            <div className="container mt-5">
+              <div className="row">
+                <div className="col text-center">
+                  <h5>Class Information:</h5>
+                  <p>Professor Abraham Aldaco<br></br>
+                    Com S 319 - Construction of User Interfaces<br></br>
+                    Assignment 3<br></br>
+                    April 30, 2023
+                  </p>
+                </div>
+              </div>
+              <br></br>
+              <div className="col text-center">
+                  <h5 className="text-center">Project Information:</h5>
+                  <p className="text-center">This project uses MERN to implement CRUD operations on a catalog of memes.<br></br>
+                  The data is stored in a Mongo database and the use can view all the products, view just one product <br></br>
+                  by searching by id,add a new product, update an existing product, and delete an existing product.</p>
+                </div>
             </div>
           </div>
-        </div>
+        </center>
       </div>
     );
   }
