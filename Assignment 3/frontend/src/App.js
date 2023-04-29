@@ -163,7 +163,7 @@ function App() {
 
   const NavBar = () => {
     return (
-      <div>
+      <div className="text-center">
         <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Main")}>Home</button>
         <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Read")}>View</button>
         <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Create")}>Create</button>
@@ -188,69 +188,69 @@ function App() {
       <div>
         {NavBar()}
         <div>
-        <h3>Add a new product :</h3>
-        <form action="">
-          <input
-            type="number"
-            placeholder="id?"
-            name="_id"
-            value={addNewProduct._id}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="title?"
-            name="title"
-            value={addNewProduct.title}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            placeholder="price?"
-            name="price"
-            value={addNewProduct.price}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="description?"
-            name="description"
-            value={addNewProduct.description}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="category?"
-            name="category"
-            value={addNewProduct.category}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="image?"
-            name="image"
-            value={addNewProduct.image}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            placeholder="rate?"
-            name="rate"
-            value={addNewProduct.rating.rate}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            placeholder="count?"
-            name="count"
-            value={addNewProduct.rating.count}
-            onChange={handleChange}
-          />
-          <button type="submit" onClick={handleOnSubmit}>
-            submit
-          </button>
-        </form>
-      </div>
+          <h3>Add a new product :</h3>
+          <form action="">
+            <input
+              type="number"
+              placeholder="id?"
+              name="_id"
+              value={addNewProduct._id}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="title?"
+              name="title"
+              value={addNewProduct.title}
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              placeholder="price?"
+              name="price"
+              value={addNewProduct.price}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="description?"
+              name="description"
+              value={addNewProduct.description}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="category?"
+              name="category"
+              value={addNewProduct.category}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="image?"
+              name="image"
+              value={addNewProduct.image}
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              placeholder="rate?"
+              name="rate"
+              value={addNewProduct.rating.rate}
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              placeholder="count?"
+              name="count"
+              value={addNewProduct.rating.count}
+              onChange={handleChange}
+            />
+            <button type="submit" onClick={handleOnSubmit}>
+              submit
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -301,15 +301,15 @@ function App() {
       <div>
         {NavBar()}
         <div>
-        <h3>Delete one product:</h3>
+          <h3>Delete one product:</h3>
 
         <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id=e.target.value]} />
         {<div>Product: {showOneItem}</div>}
 
-        <button onClick={() => deleteOneProduct(product[index]._id)}>
-          Delete
-        </button>
-      </div>
+          <button onClick={() => deleteOneProduct(product[index]._id)}>
+            Delete
+          </button>
+        </div>
       </div>
     );
   }
@@ -317,7 +317,24 @@ function App() {
     return (
       <div>
         {NavBar()}
-        <h1>Credits Page</h1>
+        <h1 className="text-center">Website made by:</h1>
+        <h3 className="text-center">Vicky Lee (vlee101) and Olivia Wiench (owiench)</h3>
+        <div className="container mt-5">
+          <div className="row">
+            <div className="col text-center">
+              <h5>Class Information:</h5>
+              <p>Professor Abraham Aldaco<br></br>
+                Com S 319 - Construction of User Interfaces<br></br>
+                Assignment 3<br></br>
+                April 30, 2023
+              </p>
+            </div>
+            <div className="col">
+              <h5 className="text-center">Project Information:</h5>
+              <p className="text-left">This project uses MERN to implement CRUD operations on a catalog of memes. The data is stored in a Mongo database and the use can view all the products, view just one product by searching by id, add a new product, update an existing product, and delete an existing product.</p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
