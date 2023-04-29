@@ -9,8 +9,8 @@ app.use(cors());
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/Assignment3_reactdata", {
-  dbName: "Assignment3_reactdata",
+mongoose.connect("mongodb://127.0.0.1:27017/reactdata", {
+  dbName: "reactdata",
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -23,6 +23,14 @@ app.get("/", async (req, resp) => {
   const allProducts = await Product.find(query);
   console.log(allProducts);
   resp.send(allProducts);
+});
+
+app.get("/:id", async (req, resp) => {
+  const id = req.params.id;
+  const query = { _id: id };
+  const oneProduct = await Product.findOne(query);
+  console.log(oneProduct);
+  resp.send(oneProduct);
 });
 
 app.delete("/delete", async (req, res) => {
