@@ -6,6 +6,7 @@ function App() {
   const [viewer1, setViewer1] = useState(false);
   const [viewer2, setViewer2] = useState(false);
   const [viewer4, setViewer4] = useState(false);
+  const [viewerForUpdatePrice, setViewerForUpdatePrice] = useState(false);
   const [oneProduct, setOneProduct] = useState([]);
   const [index, setIndex] = useState(0);
 
@@ -31,10 +32,12 @@ function App() {
           const dataArr = [];
           dataArr.push(data);
           setOneProduct(dataArr);
+          setViewerForUpdatePrice(true);
         });
     } else {
       console.log("Wrong number of Product id.");
       setOneProduct([]);
+      setViewerForUpdatePrice(false);
     }
   }
 
@@ -43,7 +46,7 @@ function App() {
   }, []);
 
   function deleteOneProduct(deleteid) {
-    console.log("Product to delete :", deleteid);
+    console.log("Product to delete: ", deleteid);
     fetch("http://localhost:4000/delete/", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -55,6 +58,24 @@ function App() {
         console.log(data);
         if (data) {
           //const keys = Object.keys(data);
+          const value = Object.values(data);
+          alert(value);
+        }
+      });
+  }
+
+  function updateOneProduct(updateid, updateprice) {
+    console.log("Product to update: ", updateid);
+    fetch("http://localhost:4000/update/", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _id: updateid, price: updateprice }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Updating a product completed: ", updateid);
+        console.log(data);
+        if (data) {
           const value = Object.values(data);
           alert(value);
         }
@@ -126,6 +147,8 @@ function App() {
         }
       });
   }
+
+  
 
   // new Product
   const [addNewProduct, setAddNewProduct] = useState({
@@ -255,8 +278,21 @@ function App() {
       <div>
         {NavBar()}
         <h1>Update Page</h1>
-        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
-        {<div>Product: {showOneItem}</div>}
+        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)] [product[index]._id=e.target.value]} />
+        {/* {let updatedPrice = product[index].price} */}
+        {<div>Product Pricing Change: {showOneItem}</div>}
+        {viewerForUpdatePrice && <input
+            type="number"
+            placeholder="price?"
+            name="price"
+            id="updatePrice"
+
+        />}
+
+        <button onClick={() => updateOneProduct(product[index]._id, document.getElementById("updatePrice").value)}>
+          Update
+        </button>
+
       </div>
     );
   }
@@ -267,7 +303,7 @@ function App() {
         <div>
         <h3>Delete one product:</h3>
 
-        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id=e.target.value]} />
         {<div>Product: {showOneItem}</div>}
 
         <button onClick={() => deleteOneProduct(product[index]._id)}>

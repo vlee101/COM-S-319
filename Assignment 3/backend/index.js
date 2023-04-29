@@ -34,7 +34,7 @@ app.get("/:id", async (req, resp) => {
 });
 
 app.delete("/delete", async (req, res) => {
-  console.log("Delete :", req.body);
+  console.log("Delete: ", req.body);
   try {
     const query = { _id: req.body._id };
     await Product.deleteOne(query);
@@ -44,6 +44,22 @@ app.delete("/delete", async (req, res) => {
     res.send(JSON.stringify(messageResponse));
   } catch (err) {
     console.log("Error while deleting :" + p_id + " " + err);
+  }
+});
+
+app.put("/update", async (req, res) => {
+  console.log("Update: ", req.body);
+  const p_id = req.body._id;
+  const pprice = req.body.price;
+
+  try {
+    await Product.updateOne({ _id: p_id }, {
+      price: pprice
+    });
+    const messageResponse = { message: `Product ${p_id} updated correctly` };
+    res.send(JSON.stringify(messageResponse));
+  } catch (err) {
+    console.log("Error while updating a product:" + p_id + " " + err);
   }
 });
 
