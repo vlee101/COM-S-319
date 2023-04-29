@@ -14,7 +14,7 @@ function App() {
     fetch("http://localhost:4000/")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Show Catalog of Products :");
+        console.log("Show Catalog of Products:");
         console.log(data);
         setProduct(data);
       });
@@ -74,7 +74,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Delete a product completed : ", deleteid);
+        console.log("Delete a product completed: ", deleteid);
         console.log(data);
         if (data) {
           //const keys = Object.keys(data);
@@ -87,11 +87,11 @@ function App() {
 
   const showAllItems = product.map((el) => (
     <div key={el._id}>
-      <img src={el.image} width={30} /> <br />
+      <img src={el.image} width={100} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
-      Rate :{el.rating.rate} and Count:{el.rating.count} <br />
+      Rate: {el.rating.rate} and Count: {el.rating.count} <br />
     </div>
   ));
 
@@ -141,7 +141,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Post a new product completed");
+        console.log("Post a new product completed!");
         console.log(data);
         if (data) {
           //const keys = Object.keys(data);
