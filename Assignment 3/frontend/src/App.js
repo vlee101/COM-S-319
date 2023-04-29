@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 function App() {
   const [CurrentView, changeCurrentView] = useState("Main");
 
-  const [product, setProduct] = useState([]);
-  const [viewer1, setViewer1] = useState(false);
-  const [viewer2, setViewer2] = useState(false);
-  const [viewer4, setViewer4] = useState(false);
-  const [viewerForUpdatePrice, setViewerForUpdatePrice] = useState(false);
+  const [products, setProducts] = useState([]);
   const [oneProduct, setOneProduct] = useState([]);
+  const [viewerForAllProducts, setViewer1] = useState(false);
+  const [viewerForUpdatePrice, setViewerForUpdatePrice] = useState(false);
+  const [updateTracker, setUpdateTracker] = useState(false);
+  //const [viewer2, setViewer2] = useState(false);
+  //const [viewer4, setViewer4] = useState(false);
   const [index, setIndex] = useState(0);
 
   function getAllProducts() {
@@ -16,9 +17,9 @@ function App() {
       .then((data) => {
         console.log("Show Catalog of Products:");
         console.log(data);
-        setProduct(data);
+        setProducts(data);
       });
-    setViewer1(!viewer1);
+    setViewer1(!viewerForAllProducts);
   }
 
   function getOneProduct(id) {
@@ -43,7 +44,8 @@ function App() {
 
   useEffect(() => {
     getAllProducts();
-  }, []);
+    getOneProduct(oneProduct.id);
+  }, [updateTracker]);
 
   function deleteOneProduct(deleteid) {
     console.log("Product to delete: ", deleteid);
@@ -60,6 +62,7 @@ function App() {
           //const keys = Object.keys(data);
           const value = Object.values(data);
           alert(value);
+          setUpdateTracker(!updateTracker);
         }
       });
   }
@@ -78,11 +81,12 @@ function App() {
         if (data) {
           const value = Object.values(data);
           alert(value);
+          setUpdateTracker(!updateTracker);
         }
       });
   }
 
-  const showAllItems = product.map((el) => (
+  const showAllItems = products.map((el) => (
     <div key={el._id}>
       <img src={el.image} width={100} /> <br />
       Title: {el.title} <br />
@@ -144,6 +148,7 @@ function App() {
           //const keys = Object.keys(data);
           const value = Object.values(data);
           alert(value);
+          setUpdateTracker(!updateTracker);
         }
       });
   }
@@ -164,12 +169,12 @@ function App() {
   const NavBar = () => {
     return (
       <div className="text-center">
-        <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Main")}>Home</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Read")}>View</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Create")}>Create</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Update")}>Update</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Delete")}>Delete</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => changeCurrentView("Credits")}>Credits</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Main"); setUpdateTracker(!updateTracker)}}>Home</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Read"); setUpdateTracker(!updateTracker)}}>View</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Create"); setUpdateTracker(!updateTracker)}}>Create</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Update"); setUpdateTracker(!updateTracker)}}>Update</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Delete"); setUpdateTracker(!updateTracker)}}>Delete</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Credits"); setUpdateTracker(!updateTracker)}}>Credits</button>
       </div>
     );
   };
@@ -199,7 +204,7 @@ function App() {
               name="_id"
               value={addNewProduct._id}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -208,7 +213,7 @@ function App() {
               name="title"
               value={addNewProduct.title}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -217,7 +222,7 @@ function App() {
               name="price"
               value={addNewProduct.price}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -226,7 +231,7 @@ function App() {
               name="description"
               value={addNewProduct.description}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -235,7 +240,7 @@ function App() {
               name="category"
               value={addNewProduct.category}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -244,7 +249,7 @@ function App() {
               name="image"
               value={addNewProduct.image}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -253,7 +258,7 @@ function App() {
               name="rate"
               value={addNewProduct.rating.rate}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <input
@@ -262,7 +267,7 @@ function App() {
               name="count"
               value={addNewProduct.rating.count}
               onChange={handleChange}
-              className="form-control my-2"
+              className="form-control m-2"
               style={{ width: '18rem' }}
             />
             <button className='btn btn-danger m-2' style={{ width: '18rem' }} type="submit" onClick={handleOnSubmit}>
@@ -286,7 +291,7 @@ function App() {
           </div>
           <div>
             <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => getAllProducts()}>Show All products</button>
-            {viewer1 && <div>Products: {showAllItems}</div>}
+            {viewerForAllProducts && <div>Products: {showAllItems}</div>}
           </div>
         </div>
       </div>
@@ -298,8 +303,7 @@ function App() {
         {NavBar()}
         <div className="row d-flex justify-content-center">
           <h1 className="text-center">Update Page</h1>
-          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id = e.target.value]} />
-          {/* {let updatedPrice = product[index].price} */}
+          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
           <div className="text-center">Product Pricing Change: {showOneItem}</div>
           {viewerForUpdatePrice && <input
             type="number"
@@ -310,7 +314,7 @@ function App() {
             style={{ width: '18rem' }}
           />}
 
-          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => updateOneProduct(product[index]._id, document.getElementById("updatePrice").value)}>
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => updateOneProduct(oneProduct[0]._id, document.getElementById("updatePrice").value)}>
             Update
           </button>
         </div>
@@ -323,11 +327,9 @@ function App() {
         {NavBar()}
         <div className="row d-flex justify-content-center">
           <h1>Delete One Product:</h1>
-
-          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id = e.target.value]} />
+          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
           {<div>Product: {showOneItem}</div>}
-
-          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(product[index]._id)}>
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
             Delete
           </button>
         </div>
