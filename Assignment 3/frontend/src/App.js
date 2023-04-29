@@ -148,7 +148,7 @@ function App() {
       });
   }
 
-  
+
 
   // new Product
   const [addNewProduct, setAddNewProduct] = useState({
@@ -179,7 +179,10 @@ function App() {
     return (
       <div>
         {NavBar()}
+        <div className="text-center">
         <h1>Welcome to the Animal Meme Product Catalog!</h1>
+        <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center" />
+        </div>
       </div>
     );
   }
@@ -187,15 +190,17 @@ function App() {
     return (
       <div>
         {NavBar()}
-        <div>
-          <h3>Add a new product :</h3>
-          <form action="">
+        <div className="row d-flex justify-content-center">
+          <h3 className="text-center">Add a new product :</h3>
+          <form action="" className="row d-flex justify-content-center col-lg-3 ">
             <input
               type="number"
               placeholder="id?"
               name="_id"
               value={addNewProduct._id}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="text"
@@ -203,6 +208,8 @@ function App() {
               name="title"
               value={addNewProduct.title}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="number"
@@ -210,6 +217,8 @@ function App() {
               name="price"
               value={addNewProduct.price}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="text"
@@ -217,6 +226,8 @@ function App() {
               name="description"
               value={addNewProduct.description}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="text"
@@ -224,6 +235,8 @@ function App() {
               name="category"
               value={addNewProduct.category}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="text"
@@ -231,6 +244,8 @@ function App() {
               name="image"
               value={addNewProduct.image}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="number"
@@ -238,6 +253,8 @@ function App() {
               name="rate"
               value={addNewProduct.rating.rate}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
             <input
               type="number"
@@ -245,9 +262,11 @@ function App() {
               name="count"
               value={addNewProduct.rating.count}
               onChange={handleChange}
+              className="form-control my-2"
+              style={{ width: '18rem' }}
             />
-            <button type="submit" onClick={handleOnSubmit}>
-              submit
+            <button className='btn btn-danger m-2' style={{ width: '18rem' }} type="submit" onClick={handleOnSubmit}>
+              Submit
             </button>
           </form>
         </div>
@@ -256,19 +275,19 @@ function App() {
   }
   else if (CurrentView === "Read") {
     return (
-      <div>
+      <div className="text-center">
         {NavBar()}
-        <h1>Catalog of Products</h1>
         <div>
-          <h3>Show all available Products.</h3>
-          <button onClick={() => getAllProducts()}>Show All products</button>
-          <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
-
-          {viewer1 && <div>Products {showAllItems}</div>}
-        </div>
-        <div>
+          <h1>Catalog of Products</h1>
+          <div className="row d-flex justify-content-center">
           <h3>Show one Product by Id:</h3>
-          {<div>Product: {showOneItem}</div>}
+            <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+            {<div>{showOneItem}</div>}
+          </div>
+          <div>
+            <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => getAllProducts()}>Show All products</button>
+            {viewer1 && <div>Products: {showAllItems}</div>}
+          </div>
         </div>
       </div>
     );
@@ -277,36 +296,38 @@ function App() {
     return (
       <div>
         {NavBar()}
-        <h1>Update Page</h1>
-        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)] [product[index]._id=e.target.value]} />
-        {/* {let updatedPrice = product[index].price} */}
-        {<div>Product Pricing Change: {showOneItem}</div>}
-        {viewerForUpdatePrice && <input
+        <div className="row d-flex justify-content-center">
+          <h1 className="text-center">Update Page</h1>
+          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id = e.target.value]} />
+          {/* {let updatedPrice = product[index].price} */}
+          <div className="text-center">Product Pricing Change: {showOneItem}</div>
+          {viewerForUpdatePrice && <input
             type="number"
             placeholder="price?"
             name="price"
             id="updatePrice"
+            className="form-control my-2"
+            style={{ width: '18rem' }}
+          />}
 
-        />}
-
-        <button onClick={() => updateOneProduct(product[index]._id, document.getElementById("updatePrice").value)}>
-          Update
-        </button>
-
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => updateOneProduct(product[index]._id, document.getElementById("updatePrice").value)}>
+            Update
+          </button>
+        </div>
       </div>
     );
   }
   else if (CurrentView === "Delete") {
     return (
-      <div>
+      <div className="text-center">
         {NavBar()}
-        <div>
+        <div className="row d-flex justify-content-center">
           <h3>Delete one product:</h3>
 
-        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id=e.target.value]} />
-        {<div>Product: {showOneItem}</div>}
+          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => [getOneProduct(e.target.value)][product[index]._id = e.target.value]} />
+          {<div>Product: {showOneItem}</div>}
 
-          <button onClick={() => deleteOneProduct(product[index]._id)}>
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(product[index]._id)}>
             Delete
           </button>
         </div>
