@@ -33,9 +33,9 @@ function App() {
           dataArr.push(data);
           setOneProduct(dataArr);
         });
-      setViewer2(!viewer2);
     } else {
       console.log("Wrong number of Product id.");
+      setOneProduct([]);
     }
   }
 
@@ -97,11 +97,11 @@ function App() {
 
   const showOneItem = oneProduct.map((el) => (
     <div key={el._id}>
-      <img src={el.image} width={30} /> <br />
+      <img src={el.image} width={100} /> <br />
       Title: {el.title} <br />
       Category: {el.category} <br />
       Price: {el.price} <br />
-      Rate :{el.rating.rate} and Count:{el.rating.count} <br />
+      Rate: {el.rating.rate} and Count: {el.rating.count} <br />
     </div>
   ));
 
@@ -263,13 +263,13 @@ function App() {
         <div>
           <h3>Show all available Products.</h3>
           <button onClick={() => getAllProducts()}>Show All products</button>
-          <input type="text" id="message" name="message" placeholder="id" onChange={(e) => getOneProduct(e.target.value)} />
+          <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
 
           {viewer1 && <div>Products {showAllItems}</div>}
         </div>
         <div>
           <h3>Show one Product by Id:</h3>
-          {viewer2 && <div>Product: {showOneItem}</div>}
+          {<div>Product: {showOneItem}</div>}
         </div>
       </div>
     );
