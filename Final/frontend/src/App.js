@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { App2 } from "./AppView";
 function App() {
   const [CurrentView, changeCurrentView] = useState("Main");
 
@@ -174,6 +175,8 @@ function App() {
         <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Create"); setUpdateTracker(!updateTracker)}}>Create</button>
         <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Update"); setUpdateTracker(!updateTracker)}}>Update</button>
         <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Delete"); setUpdateTracker(!updateTracker)}}>Delete</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Customer View"); setUpdateTracker(!updateTracker)}}>Customer View</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Order Shipment Enviroment"); setUpdateTracker(!updateTracker)}}>Order Shipment Enviroment</button>
         <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Credits"); setUpdateTracker(!updateTracker)}}>Credits</button>
       </div>
     );
@@ -185,7 +188,7 @@ function App() {
       <div>
         {NavBar()}
         <div className="text-center">
-        <h1>Welcome to the Animal Meme Product Catalog!</h1>
+        <h1>The Animal Meme Product Admin Center</h1>
         <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center" />
         </div>
       </div>
@@ -332,6 +335,42 @@ function App() {
           <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
             Delete
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  
+  // <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Customer View"); setUpdateTracker(!updateTracker)}}>Customer View</button>
+  // <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Order Shipment Enviroment"); setUpdateTracker(!updateTracker)}}>Order Shipment Enviroment</button>
+
+  else if (CurrentView === "Customer View") {
+    return (
+      <div className="text-center">
+        {NavBar()}
+        <div className="row d-flex justify-content-center">
+          <App2 />
+          {/* <h1>Delete One Product:</h1>
+          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+          {<div>Product: {showOneItem}</div>}
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
+            Delete
+          </button> */}
+        </div>
+      </div>
+    );
+  }
+  else if (CurrentView === "Order Shipment Enviroment") {
+    return (
+      <div className="text-center">
+        {NavBar()}
+        <div className="row d-flex justify-content-center">
+          {/* <h1>Delete One Product:</h1>
+          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+          {<div>Product: {showOneItem}</div>}
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
+            Delete
+          </button> */}
         </div>
       </div>
     );
