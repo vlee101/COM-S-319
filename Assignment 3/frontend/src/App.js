@@ -7,7 +7,6 @@ function App() {
   const [viewer2, setViewer2] = useState(false);
   const [viewer4, setViewer4] = useState(false);
   const [oneProduct, setOneProduct] = useState([]);
-  const [checked4, setChecked4] = useState(false);
   const [index, setIndex] = useState(0);
 
   function getAllProducts() {
@@ -43,28 +42,6 @@ function App() {
     getAllProducts();
   }, []);
 
-  useEffect(() => {
-    getAllProducts();
-  }, [checked4]);
-
-  function getOneByOneProductNext() {
-    if (product.length > 0) {
-      if (index === product.length - 1) setIndex(0);
-      else setIndex(index + 1);
-      if (product.length > 0) setViewer4(true);
-      else setViewer4(false);
-    }
-  }
-
-  function getOneByOneProductPrev() {
-    if (product.length > 0) {
-      if (index === 0) setIndex(product.length - 1);
-      else setIndex(index - 1);
-      if (product.length > 0) setViewer4(true);
-      else setViewer4(false);
-    }
-  }
-
   function deleteOneProduct(deleteid) {
     console.log("Product to delete :", deleteid);
     fetch("http://localhost:4000/delete/", {
@@ -82,7 +59,6 @@ function App() {
           alert(value);
         }
       });
-    setChecked4(!checked4);
   }
 
   const showAllItems = product.map((el) => (
@@ -279,6 +255,8 @@ function App() {
       <div>
         {NavBar()}
         <h1>Update Page</h1>
+        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+        {<div>Product: {showOneItem}</div>}
       </div>
     );
   }
@@ -288,29 +266,13 @@ function App() {
         {NavBar()}
         <div>
         <h3>Delete one product:</h3>
-        <input
-          type="checkbox"
-          id="acceptdelete"
-          name="acceptdelete"
-          checked={checked4}
-          onChange={(e) => setChecked4(!checked4)}
-        />
-        <button onClick={() => getOneByOneProductPrev()}>Prev</button>
-        <button onClick={() => getOneByOneProductNext()}>Next</button>
+
+        <input type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+        {<div>Product: {showOneItem}</div>}
+
         <button onClick={() => deleteOneProduct(product[index]._id)}>
           Delete
         </button>
-        {checked4 && (
-          <div key={product[index]._id}>
-            <img src={product[index].image} width={30} /> <br />
-            Id:{product[index]._id} <br />
-            Title: {product[index].title} <br />
-            Category: {product[index].category} <br />
-            Price: {product[index].price} <br />
-            Rate :{product[index].rating.rate} and Count:
-            {product[index].rating.count} <br />
-          </div>
-        )}
       </div>
       </div>
     );
