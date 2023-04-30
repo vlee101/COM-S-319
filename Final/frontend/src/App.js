@@ -170,17 +170,44 @@ function App() {
   const NavBar = () => {
     return (
       <div className="text-center">
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Main"); setUpdateTracker(!updateTracker)}}>Home</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Read"); setUpdateTracker(!updateTracker)}}>View</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Create"); setUpdateTracker(!updateTracker)}}>Create</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Update"); setUpdateTracker(!updateTracker)}}>Update</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Delete"); setUpdateTracker(!updateTracker)}}>Delete</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Customer View"); setUpdateTracker(!updateTracker)}}>Customer View</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Order Shipment Enviroment"); setUpdateTracker(!updateTracker)}}>Order Shipment Enviroment</button>
-        <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Credits"); setUpdateTracker(!updateTracker)}}>Credits</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Main"); setUpdateTracker(!updateTracker) }}>Home</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Read"); setUpdateTracker(!updateTracker) }}>View</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Create"); setUpdateTracker(!updateTracker) }}>Create</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Update"); setUpdateTracker(!updateTracker) }}>Update</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Delete"); setUpdateTracker(!updateTracker) }}>Delete</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Customer View"); setUpdateTracker(!updateTracker) }}>Customer View</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Order Shipment Enviroment"); setUpdateTracker(!updateTracker) }}>Order Shipment Enviroment</button>
+        <button type='button' className='btn btn-danger m-4' onClick={e => { changeCurrentView("Credits"); setUpdateTracker(!updateTracker) }}>Credits</button>
       </div>
     );
   };
+
+  const RaspberryPiData = () => {
+    getData();
+    let interval = setInterval(getData, 10000);
+
+    async function getData() {
+      console.log("fetching raspberry pi data");
+      let response = await fetch("http://10.26.25.211:2001/", { method: "GET" });
+      let data = await response.json();
+      parseData(data);
+    }
+
+    function parseData(data) {
+      let tempFParagraph = document.getElementById("TempF");
+      tempFParagraph.innerHTML = data[0].TempF;
+
+      let tempCParagraph = document.getElementById("TempC");
+      tempCParagraph.innerHTML = data[0].TempC;
+
+      let humidityParagraph = document.getElementById("Humidity");
+      humidityParagraph.innerHTML = data[0].Humidity;
+
+      let datetimeParagraph = document.getElementById("DateTime");
+      datetimeParagraph.innerHTML = data[0].Date;
+      datetimeParagraph.innerHTML += " at " + data[0].Time;
+    }
+  }
 
 
   if (CurrentView === "Main") {
@@ -188,8 +215,8 @@ function App() {
       <div>
         {NavBar()}
         <div className="text-center">
-        <h1>The Animal Meme Product Admin Center</h1>
-        <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center" />
+          <h1>The Animal Meme Product Admin Center</h1>
+          <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center" />
         </div>
       </div>
     );
@@ -288,7 +315,7 @@ function App() {
         <div>
           <h1>Catalog of Products</h1>
           <div className="row d-flex justify-content-center">
-          <h3>Show one Product by Id:</h3>
+            <h3>Show one Product by Id:</h3>
             <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
             {<div>{showOneItem}</div>}
           </div>
@@ -340,7 +367,7 @@ function App() {
     );
   }
 
-  
+
   // <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Customer View"); setUpdateTracker(!updateTracker)}}>Customer View</button>
   // <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Order Shipment Enviroment"); setUpdateTracker(!updateTracker)}}>Order Shipment Enviroment</button>
 
@@ -365,12 +392,49 @@ function App() {
       <div className="text-center">
         {NavBar()}
         <div className="row d-flex justify-content-center">
-          {/* <h1>Delete One Product:</h1>
-          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
-          {<div>Product: {showOneItem}</div>}
-          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
-            Delete
-          </button> */}
+          <div>
+            <h1>Enviroment Conditions in Shipment Warehouse:</h1>
+            <div id="tempdata" className="my-5">
+              <div className="row">
+                <div className="col mb-3">
+                  <div className="card" style={{ width: "18rem" }}>
+                    <div className="card-body">
+                      <h3 className="card-title">Temperature in F:</h3>
+                      <p id="TempF" className="card-text"></p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col mb-3">
+                  <div className="card" style={{ width: "18rem" }}>
+                    <div className="card-body">
+                      <h3 className="card-title">Temperature in C:</h3>
+                      <p id="TempC" className="card-text"></p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col mb-3">
+                  <div className="card" style={{ width: "18rem" }}>
+                    <div className="card-body">
+                      <h3 className="card-title">Humidity:</h3>
+                      <p id="Humidity" className="card-text"></p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col mb-3">
+                  <div className="card" style={{ width: "18rem" }}>
+                    <div className="card-body">
+                      <h3 className="card-title">Last updated:</h3>
+                      <p id="DateTime" className="card-text"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {RaspberryPiData()}
+            <h2>Warehouse manager:</h2>
+            <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center my-2" />
+            <h3>Dr. Abraham Aldaco</h3>
+          </div>
         </div>
       </div>
     );
@@ -387,20 +451,19 @@ function App() {
               <div className="row">
                 <div className="col text-center">
                   <h5>Class Information:</h5>
-                  <p>Professor Abraham Aldaco<br></br>
-                    Com S 319 - Construction of User Interfaces<br></br>
-                    Assignment 3<br></br>
-                    April 30, 2023
+                  <p>Dr. Abraham N. Aldaco Gastelum<br></br>
+                    Com S 319 - Construction of User Interfaces, Spring 2023<br></br>
+                    May 6, 2023
                   </p>
                 </div>
               </div>
               <br></br>
               <div className="col text-center">
-                  <h5 className="text-center">Project Information:</h5>
-                  <p className="text-center">This project uses MERN to implement CRUD operations on a catalog of memes.<br></br>
+                <h5 className="text-center">Project Information:</h5>
+                <p className="text-center">This project uses MERN to implement CRUD operations on a catalog of memes.<br></br>
                   The data is stored in a Mongo database and the use can view all the products, view just one product <br></br>
                   by searching by id,add a new product, update an existing product, and delete an existing product.</p>
-                </div>
+              </div>
             </div>
           </div>
         </center>
