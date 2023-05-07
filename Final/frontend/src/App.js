@@ -8,9 +8,6 @@ function App() {
   const [viewerForAllProducts, setViewer1] = useState(false);
   const [viewerForUpdatePrice, setViewerForUpdatePrice] = useState(false);
   const [updateTracker, setUpdateTracker] = useState(false);
-  //const [viewer2, setViewer2] = useState(false);
-  //const [viewer4, setViewer4] = useState(false);
-  const [index, setIndex] = useState(0);
 
   function getAllProducts() {
     fetch("http://localhost:4000/")
@@ -227,7 +224,8 @@ function App() {
         {NavBar()}
         <div className="row d-flex justify-content-center">
           <h1 className="text-center">Add a New Product:</h1>
-          <form action="" className="row d-flex justify-content-center col-lg-3 ">
+          <form action="" className="row d-flex justify-content-center text-center">
+            <label htmlFor="_id">Id</label>
             <input
               type="number"
               placeholder="id?"
@@ -237,6 +235,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="title">Title</label>
             <input
               type="text"
               placeholder="title?"
@@ -246,6 +245,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="price">Price</label>
             <input
               type="number"
               placeholder="price?"
@@ -255,6 +255,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="description">Description</label>
             <input
               type="text"
               placeholder="description?"
@@ -264,6 +265,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="category">Category</label>
             <input
               type="text"
               placeholder="category?"
@@ -273,6 +275,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="image">Image URL</label>
             <input
               type="text"
               placeholder="image?"
@@ -282,6 +285,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="rate">Rating</label>
             <input
               type="number"
               placeholder="rate?"
@@ -291,6 +295,7 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label htmlFor="count">Count</label>
             <input
               type="number"
               placeholder="count?"
@@ -300,19 +305,20 @@ function App() {
               className="form-control m-2"
               style={{ width: '18rem' }}
             />
+            <label></label>
             <button className='btn btn-danger m-2' style={{ width: '18rem' }} type="submit" onClick={handleOnSubmit}>
               Submit
             </button>
-          </form>
-        </div>
-      </div>
+          </form >
+        </div >
+      </div >
     );
   }
   else if (CurrentView === "Read") {
     return (
-      <div className="text-center">
+      <div>
         {NavBar()}
-        <div>
+        <div className="text-center">
           <h1>Catalog of Products</h1>
           <div className="row d-flex justify-content-center">
             <h3>Show one Product by Id:</h3>
@@ -344,7 +350,7 @@ function App() {
             style={{ width: '18rem' }}
           />}
 
-          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => updateOneProduct(oneProduct[0]._id, document.getElementById("updatePrice").value)}>
+          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => { if (oneProduct != null && oneProduct.length > 0) { updateOneProduct(oneProduct[0]._id, document.getElementById("updatePrice").value); } else { alert("Cannot update: valid product not chosen"); } }}>
             Update
           </button>
         </div>
@@ -353,87 +359,82 @@ function App() {
   }
   else if (CurrentView === "Delete") {
     return (
-      <div className="text-center">
+      <div>
         {NavBar()}
-        <div className="row d-flex justify-content-center">
-          <h1>Delete One Product:</h1>
-          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
-          {<div>Product: {showOneItem}</div>}
-          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
-            Delete
-          </button>
+        <div className="text-center">
+          <div className="row d-flex justify-content-center">
+            <h1>Delete One Product:</h1>
+            <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
+            {<div>Product: {showOneItem}</div>}
+            <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => { if (oneProduct != null && oneProduct.length > 0) { deleteOneProduct(oneProduct[0]._id) } else { alert("Cannot delete: valid product not chosen"); } }}>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     );
   }
-
-
-  // <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Customer View"); setUpdateTracker(!updateTracker)}}>Customer View</button>
-  // <button type='button' className='btn btn-danger m-4' onClick={e => {changeCurrentView("Order Shipment Enviroment"); setUpdateTracker(!updateTracker)}}>Order Shipment Enviroment</button>
-
   else if (CurrentView === "Customer View") {
     return (
-      <div className="text-center">
+      <div>
         {NavBar()}
-        <div className="row d-flex justify-content-center">
-          <App2 />
-          {/* <h1>Delete One Product:</h1>
-          <input className="form-control my-2 row d-flex justify-content-center col-lg-3" style={{ width: '18rem' }} type="text" id="message" name="message" placeholder="id" onKeyUp={(e) => getOneProduct(e.target.value)} />
-          {<div>Product: {showOneItem}</div>}
-          <button className='btn btn-danger m-2' style={{ width: '18rem' }} onClick={() => deleteOneProduct(oneProduct[0]._id)}>
-            Delete
-          </button> */}
+        <div className="text-center">
+          <div className="row d-flex justify-content-center">
+            <App2 />
+          </div>
         </div>
       </div>
     );
   }
   else if (CurrentView === "Order Shipment Enviroment") {
     return (
-      <div className="text-center">
+      <div>
         {NavBar()}
-        <div className="row d-flex justify-content-center">
-          <div>
-            <h1>Enviroment Conditions in Shipment Warehouse:</h1>
-            <div id="tempdata" className="my-5">
-              <div className="row">
-                <div className="col mb-3">
-                  <div className="card" style={{ width: "18rem" }}>
-                    <div className="card-body">
-                      <h3 className="card-title">Temperature in F:</h3>
-                      <p id="TempF" className="card-text"></p>
+        <div className="text-center">
+          <div className="row d-flex justify-content-center">
+            <div>
+              <h1>Enviroment Conditions in Shipment Warehouse:</h1>
+              <div id="tempdata" className="my-5">
+                <div className="row">
+                  <div className="col mb-3">
+                    <div className="card" style={{ width: "18rem" }}>
+                      <div className="card-body">
+                        <h3 className="card-title">Temperature in F:</h3>
+                        <p id="TempF" className="card-text"></p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col mb-3">
-                  <div className="card" style={{ width: "18rem" }}>
-                    <div className="card-body">
-                      <h3 className="card-title">Temperature in C:</h3>
-                      <p id="TempC" className="card-text"></p>
+                  <div className="col mb-3">
+                    <div className="card" style={{ width: "18rem" }}>
+                      <div className="card-body">
+                        <h3 className="card-title">Temperature in C:</h3>
+                        <p id="TempC" className="card-text"></p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col mb-3">
-                  <div className="card" style={{ width: "18rem" }}>
-                    <div className="card-body">
-                      <h3 className="card-title">Humidity:</h3>
-                      <p id="Humidity" className="card-text"></p>
+                  <div className="col mb-3">
+                    <div className="card" style={{ width: "18rem" }}>
+                      <div className="card-body">
+                        <h3 className="card-title">Humidity:</h3>
+                        <p id="Humidity" className="card-text"></p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col mb-3">
-                  <div className="card" style={{ width: "18rem" }}>
-                    <div className="card-body">
-                      <h3 className="card-title">Last updated:</h3>
-                      <p id="DateTime" className="card-text"></p>
+                  <div className="col mb-3">
+                    <div className="card" style={{ width: "18rem" }}>
+                      <div className="card-body">
+                        <h3 className="card-title">Last updated:</h3>
+                        <p id="DateTime" className="card-text"></p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {RaspberryPiData()}
+              <h2>Warehouse manager:</h2>
+              <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center my-2" />
+              <h3>Dr. Abraham Aldaco</h3>
             </div>
-            {RaspberryPiData()}
-            <h2>Warehouse manager:</h2>
-            <img src="http://127.0.0.1:4000/images/IMG_2380.gif" width={400} className="center my-2" />
-            <h3>Dr. Abraham Aldaco</h3>
           </div>
         </div>
       </div>
