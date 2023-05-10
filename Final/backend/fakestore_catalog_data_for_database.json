@@ -1,0 +1,34 @@
+[{
+  "_id": 1,
+  "title": "Doge Bread",
+  "price": 1,
+  "description": "bread doge who would wish for more?",
+  "category": "foods",
+  "image": "http://127.0.0.1:4000/images/IMG_2286.jpeg",
+  "rating": {
+    "rate": 8.7,
+    "count": 879
+  }
+},{
+  "_id": 2,
+  "title": "Dragoon Bros",
+  "price": 2,
+  "description": "I want a friend like that :,D",
+  "category": "wholesome",
+  "image": "http://127.0.0.1:4000/images/IMG_2287.jpeg",
+  "rating": {
+    "rate": 5.6,
+    "count": 630
+  }
+},{
+  "_id": 3,
+  "title": "Sadge Frogge",
+  "price": 3,
+  "description": "sad boi",
+  "category": "wholesome",
+  "image": "http://127.0.0.1:4000/images/IMG_2288.jpeg",
+  "rating": {
+    "rate": 4.9,
+    "count": 952
+  }
+}]

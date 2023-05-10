@@ -454,16 +454,16 @@ function App() {
                   <h5>Class Information:</h5>
                   <p>Dr. Abraham N. Aldaco Gastelum<br></br>
                     Com S 319 - Construction of User Interfaces, Spring 2023<br></br>
-                    May 6, 2023
+                    May 10, 2023
                   </p>
                 </div>
               </div>
               <br></br>
               <div className="col text-center">
                 <h5 className="text-center">Project Information:</h5>
-                <p className="text-center">This project uses MERN to implement CRUD operations on a catalog of memes.<br></br>
-                  The data is stored in a Mongo database and the use can view all the products, view just one product <br></br>
-                  by searching by id,add a new product, update an existing product, and delete an existing product.</p>
+                <p className="text-center">This project uses MERN to implement CRUD operations on a catalog of products.<br></br>
+                  The data is stored in a Mongo database and the user can view all the products, view just one product <br></br>
+                  by searching by id, add a new product, update an existing product, and delete an existing product.</p>
               </div>
             </div>
           </div>
